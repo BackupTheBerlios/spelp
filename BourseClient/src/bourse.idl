@@ -1,0 +1,99 @@
+module BourseCorba
+{
+	exception ServerException
+		{
+		  string reason;
+		};
+
+	struct ActionMontant { 
+		string libelleTitre ;
+		long idAction ;
+		double montant ;
+	} ;
+	typedef sequence<ActionMontant> ListeActionMontant;
+	
+	interface Historique {
+		attribute double valeur ;
+		attribute string dateHistorique ;
+	} ;
+	typedef sequence<Historique> ListeHistoriques;
+	
+	struct Titre { 
+		string libelle ;
+		long id ;
+	} ;
+	typedef sequence<Titre> ListeTitres;
+	struct TitreDetaille {
+		string libelle ;
+		long id ;
+		string dateIntroduction ;
+		double coursIntrodution ;
+		double coursLePlusHaut ;
+		double coursLePlusBas ;
+		ListeHistoriques histo ; 
+	} ;
+	
+	interface Alarme {
+		attribute short type ;
+		attribute double seuil ;
+		void notifie () ;
+	} ;
+	
+	
+	interface Compte
+    {
+    	attribute string nom ;
+    	attribute double cash ;
+    	// retourne la liste des titres disponibles a l'achat
+    	ListeTitres getTitres () ;
+    	TitreDetaille getTitre (in long id) ;
+    	double getMontantPortefeuille () ;
+    	ListeActionMontant getActionsAvecMontant () ;
+    	// retourne l'id de l'action achetee a partir du titre
+    	long acheterAction(in long idTitre) ;
+    	void vendreAction (in long idAction) ;
+    	void positionnerAlarme (in Alarme a) ;
+    };
+    
+    struct CompteAdmin 
+    {
+    	string nom ;
+    	string id ;
+    };
+	typedef sequence<CompteAdmin> ListeCompteAdmin;
+	
+	interface Admin
+	{		
+		// retourne l identifiant de l utilisateur
+		long insererUtilisateur(in string nom, in string prenom, in string login, in string mdp, in long role);
+		
+		// retourne l identifiant du compte
+		long creerCompte(in double cash);
+		
+		void affecterCompte(in long idUser, in long idCompte);
+		
+		ListeCompteAdmin getComptes () ;
+		
+		void ajoutCash (in long idCompte, in double valeur) ;
+		void diminuerCash(in long idCompte, in double valeur) ;
+	};
+
+	interface ServiceWeb {
+		void creerTitre (in long code, in string libelle, in double coursIntro, in long nbActions) ;
+		void majCoursAction (in long idTitre, in double nouveauCours);
+	};
+	
+	interface Bourse {
+		
+		ServiceWeb getServiceWeb () raises (ServerException);
+		
+		Compte connectUser(in string login, in string mdp) raises (ServerException);
+		
+		Admin connectAdmin(in string login, in string mdp) raises (ServerException);
+		
+	};
+	
+
+	
+	
+};
