@@ -13,8 +13,10 @@ import BourseCorba.Bourse;
 import BourseCorba.BourseHelper;
 import BourseCorba.Compte;
 import BourseCorba.CompteAdmin;
+import BourseCorba.Historique;
 import BourseCorba.ServiceWeb;
 import BourseCorba.Titre;
+import BourseCorba.TitreDetaille;
 
 public class Client {
 
@@ -88,11 +90,26 @@ public class Client {
                 Titre[] allTitres2 = compteNico.getTitres() ;
                 for (Titre t : allTitres2) {
                 	System.out.println("TITRE " + t.id + " : " + t.libelle + " = " + t.cours);
+
+                	// TITRES DETAILLES
+                    TitreDetaille titre = compteNico.getTitre(t.id);
+                	System.out.println("TITRE DETAILLE :\n " +
+                			"\tLIBELLE : \t" + titre.libelle +"\n " +
+                			"\tINTRO :  \t" + titre.coursIntrodution +" le " + titre.dateIntroduction + "\n" +
+                			"\tPLUS BAS : \t" + titre.coursLePlusBas +"\n " +
+                			"\tPLUS HAUT : \t" + titre.coursLePlusHaut + "\n");
+                	Historique[] histos = titre.histo;
+                	System.out.println("HISTORIQUE : ");
+                	for (Historique h : histos){
+                		System.out.println(h.dateHistorique() + " : " + h.valeur());
+                	}
+                	
                 }
                 double portefeuille2 = compteNico.getMontantPortefeuille() ;
                 System.out.println("MONTANT PORTEFEUILLE : " + portefeuille2);
+                
+                
             }
-            
             
             
         } catch (Exception e) {
