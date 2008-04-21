@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_8Pm7EA-IEd2sVbl7MGroRg" name="ProfilCorba" metaclassReference="_9WppYA-NEd2sVbl7MGroRg _9WqQcg-NEd2sVbl7MGroRg _9W0BcA-NEd2sVbl7MGroRg">
+  <eAnnotations xmi:id="_HrPQ4A-JEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_9W1PkQ-NEd2sVbl7MGroRg" name="ProfilCorba" nsURI="http:///schemas/ProfilCorba/_9W1PkA-NEd2sVbl7MGroRg/1" nsPrefix="ProfilCorba">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_9W1Pkg-NEd2sVbl7MGroRg" name="CORBA_INTERFACE">
+        <eAnnotations xmi:id="_9W1Pkw-NEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_830KkA-IEd2sVbl7MGroRg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_9W1PlA-NEd2sVbl7MGroRg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_9W1Plg-NEd2sVbl7MGroRg" name="CORBA_STRUCT">
+        <eAnnotations xmi:id="_9W1Plw-NEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_-kyCsA-IEd2sVbl7MGroRg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_9W1PmA-NEd2sVbl7MGroRg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_9W1Pmg-NEd2sVbl7MGroRg" name="CORBA_ATTRIBUTE">
+        <eAnnotations xmi:id="_9W1Pmw-NEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_67WEkA-NEd2sVbl7MGroRg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_9W1PnA-NEd2sVbl7MGroRg" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_HrPQ4Q-JEd2sVbl7MGroRg" name="ProfilCorba" nsURI="http:///schemas/ProfilCorba/_HrJxUA-JEd2sVbl7MGroRg/0" nsPrefix="ProfilCorba">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HrPQ4g-JEd2sVbl7MGroRg" name="CORBA_INTERFACE">
+        <eAnnotations xmi:id="_HrPQ4w-JEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_830KkA-IEd2sVbl7MGroRg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HrP38A-JEd2sVbl7MGroRg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HrP38g-JEd2sVbl7MGroRg" name="CORBA_STRUCT">
+        <eAnnotations xmi:id="_HrP38w-JEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_-kyCsA-IEd2sVbl7MGroRg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HrP39A-JEd2sVbl7MGroRg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.1.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_9WppYA-NEd2sVbl7MGroRg">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_9WqQcg-NEd2sVbl7MGroRg">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <elementImport xmi:id="_9W0BcA-NEd2sVbl7MGroRg">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_830KkA-IEd2sVbl7MGroRg" name="CORBA_INTERFACE">
+    <ownedAttribute xmi:id="_9W0Bcw-NEd2sVbl7MGroRg" name="base_Class" association="_9W0BcQ-NEd2sVbl7MGroRg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_-kyCsA-IEd2sVbl7MGroRg" name="CORBA_STRUCT">
+    <ownedAttribute xmi:id="_9Wq3gQ-NEd2sVbl7MGroRg" name="base_Class" association="_9WqQcw-NEd2sVbl7MGroRg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_67WEkA-NEd2sVbl7MGroRg" name="CORBA_ATTRIBUTE">
+    <ownedAttribute xmi:id="_9WqQcQ-NEd2sVbl7MGroRg" name="base_Property" association="_9WppYQ-NEd2sVbl7MGroRg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_9WppYQ-NEd2sVbl7MGroRg" name="Property_CORBA_ATTRIBUTE" memberEnd="_9WqQcA-NEd2sVbl7MGroRg _9WqQcQ-NEd2sVbl7MGroRg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_9WqQcA-NEd2sVbl7MGroRg" name="extension_CORBA_ATTRIBUTE" type="_67WEkA-NEd2sVbl7MGroRg" aggregation="composite" association="_9WppYQ-NEd2sVbl7MGroRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_9WqQcw-NEd2sVbl7MGroRg" name="Class_CORBA_STRUCT" memberEnd="_9Wq3gA-NEd2sVbl7MGroRg _9Wq3gQ-NEd2sVbl7MGroRg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_9Wq3gA-NEd2sVbl7MGroRg" name="extension_CORBA_STRUCT" type="_-kyCsA-IEd2sVbl7MGroRg" aggregation="composite" association="_9WqQcw-NEd2sVbl7MGroRg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_9W0BcQ-NEd2sVbl7MGroRg" name="Class_CORBA_INTERFACE" memberEnd="_9W0Bcg-NEd2sVbl7MGroRg _9W0Bcw-NEd2sVbl7MGroRg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_9W0Bcg-NEd2sVbl7MGroRg" name="extension_CORBA_INTERFACE" type="_830KkA-IEd2sVbl7MGroRg" aggregation="composite" association="_9W0BcQ-NEd2sVbl7MGroRg"/>
+  </packagedElement>
+</uml:Profile>

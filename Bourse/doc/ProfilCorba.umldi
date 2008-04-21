@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_8Pke0A-IEd2sVbl7MGroRg" activeDiagram="_8Pke0Q-IEd2sVbl7MGroRg">
+  <model href="ProfilCorba.uml#_8Pm7EA-IEd2sVbl7MGroRg"/>
+  <diagrams xmi:id="_8Pke0Q-IEd2sVbl7MGroRg" position="0,0" size="100,100" name="ProfilCorba" viewport="0,0">
+    <property xmi:id="_8QN_EA-IEd2sVbl7MGroRg" key="pageFormatName" value="A4"/>
+    <property xmi:id="_8QN_EQ-IEd2sVbl7MGroRg" key="diagramWidth" value="840"/>
+    <property xmi:id="_8QN_Eg-IEd2sVbl7MGroRg" key="diagramHeight" value="1188"/>
+    <property xmi:id="_8QN_Ew-IEd2sVbl7MGroRg" key="pageMarginName" value="Small Margin"/>
+    <property xmi:id="_8QN_FA-IEd2sVbl7MGroRg" key="diagramTopMargin" value="20"/>
+    <property xmi:id="_8QN_FQ-IEd2sVbl7MGroRg" key="diagramBottomMargin" value="20"/>
+    <property xmi:id="_8QN_Fg-IEd2sVbl7MGroRg" key="diagramLeftMargin" value="20"/>
+    <property xmi:id="_8QN_Fw-IEd2sVbl7MGroRg" key="diagramRightMargin" value="20"/>
+    <property xmi:id="_8QN_GA-IEd2sVbl7MGroRg" key="orientation" value="portrait"/>
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_8Pke0g-IEd2sVbl7MGroRg" presentation="org.topcased.modeler.uml.profilediagram">
+      <element href="ProfilCorba.uml#_8Pm7EA-IEd2sVbl7MGroRg"/>
+    </semanticModel>
+    <contained xsi:type="di:GraphNode" xmi:id="_83tc4A-IEd2sVbl7MGroRg" position="67,72" size="187,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_83tc4Q-IEd2sVbl7MGroRg" presentation="default">
+        <element href="ProfilCorba.uml#_830KkA-IEd2sVbl7MGroRg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_83tc4g-IEd2sVbl7MGroRg">
+        <property xmi:id="_83tc4w-IEd2sVbl7MGroRg" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_83tc5A-IEd2sVbl7MGroRg" presentation="default">
+          <element href="ProfilCorba.uml#_830KkA-IEd2sVbl7MGroRg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_-kxboA-IEd2sVbl7MGroRg" position="290,72" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_-kxboQ-IEd2sVbl7MGroRg" presentation="default">
+        <element href="ProfilCorba.uml#_-kyCsA-IEd2sVbl7MGroRg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_-kxbog-IEd2sVbl7MGroRg">
+        <property xmi:id="_-kxbow-IEd2sVbl7MGroRg" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_-kxbpA-IEd2sVbl7MGroRg" presentation="default">
+          <element href="ProfilCorba.uml#_-kyCsA-IEd2sVbl7MGroRg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_67VdgA-NEd2sVbl7MGroRg" position="145,188" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_67VdgQ-NEd2sVbl7MGroRg" presentation="default">
+        <element href="ProfilCorba.uml#_67WEkA-NEd2sVbl7MGroRg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_67Vdgg-NEd2sVbl7MGroRg">
+        <property xmi:id="_67Vdgw-NEd2sVbl7MGroRg" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_67VdhA-NEd2sVbl7MGroRg" presentation="default">
+          <element href="ProfilCorba.uml#_67WEkA-NEd2sVbl7MGroRg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+  </diagrams>
+</diagrams:Diagrams>

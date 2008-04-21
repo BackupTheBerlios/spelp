@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ProfilCorba="http:///schemas/ProfilCorba/_9W1PkA-NEd2sVbl7MGroRg/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/ProfilCorba/_9W1PkA-NEd2sVbl7MGroRg/1 ProfilCorba.uml#_9W1PkQ-NEd2sVbl7MGroRg">
+  <uml:Model xmi:id="_qb8akM37EdqwVrslYOdUDA">
+    <elementImport xmi:id="_jE0DYA-EEd2sVbl7MGroRg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_jE8mQA-EEd2sVbl7MGroRg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </elementImport>
+    <elementImport xmi:id="_jE8mQQ-EEd2sVbl7MGroRg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_w8IxIM37EdqwVrslYOdUDA" name="Bourse">
+      <packagedElement xmi:type="uml:Class" xmi:id="_RkdyEA-EEd2sVbl7MGroRg" name="Compte">
+        <ownedAttribute xmi:id="_dBBU8A-EEd2sVbl7MGroRg" name="num">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_d8KukA-EEd2sVbl7MGroRg" name="cash">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_nDxMQA-EEd2sVbl7MGroRg" name="Action"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_pU2eEA-EEd2sVbl7MGroRg" name="Utilisateur">
+        <ownedAttribute xmi:id="_rBJAwA-EEd2sVbl7MGroRg" name="nom">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_tDy1AA-EEd2sVbl7MGroRg" name="prenom">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_uR6N8A-EEd2sVbl7MGroRg" name="login">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xUuesA-EEd2sVbl7MGroRg" name="mdp">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_0WBFcA-EEd2sVbl7MGroRg" name="role">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_3afjEA-EEd2sVbl7MGroRg" name="Alarme">
+        <ownedAttribute xmi:id="_4zv1AA-EEd2sVbl7MGroRg" name="type">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_7-n1kA-EEd2sVbl7MGroRg" name="seuil">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="__cnmeA-EEd2sVbl7MGroRg" name="Association1" memberEnd="__coNgA-EEd2sVbl7MGroRg __coNgw-EEd2sVbl7MGroRg">
+        <ownedEnd xmi:id="__coNgA-EEd2sVbl7MGroRg" name="compte" type="_RkdyEA-EEd2sVbl7MGroRg" association="__cnmeA-EEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__coNgQ-EEd2sVbl7MGroRg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__coNgg-EEd2sVbl7MGroRg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="__coNgw-EEd2sVbl7MGroRg" name="alarmes" type="_3afjEA-EEd2sVbl7MGroRg" isUnique="false" association="__cnmeA-EEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__coNhA-EEd2sVbl7MGroRg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__coNhQ-EEd2sVbl7MGroRg"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_I6HbqA-FEd2sVbl7MGroRg" name="Association2" memberEnd="_I6ICsA-FEd2sVbl7MGroRg _I6ICsw-FEd2sVbl7MGroRg">
+        <ownedEnd xmi:id="_I6ICsA-FEd2sVbl7MGroRg" name="comptes" type="_RkdyEA-EEd2sVbl7MGroRg" isUnique="false" association="_I6HbqA-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I6ICsQ-FEd2sVbl7MGroRg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I6ICsg-FEd2sVbl7MGroRg"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_I6ICsw-FEd2sVbl7MGroRg" name="utilisateur" type="_pU2eEA-EEd2sVbl7MGroRg" association="_I6HbqA-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I6ICtA-FEd2sVbl7MGroRg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I6ICtQ-FEd2sVbl7MGroRg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_QTmKoA-FEd2sVbl7MGroRg" name="Titre">
+        <ownedAttribute xmi:id="_SqPR4A-FEd2sVbl7MGroRg" name="libelle">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_VD7GEA-FEd2sVbl7MGroRg" name="date_intro">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_YuGRwA-FEd2sVbl7MGroRg" name="cours_intro">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_bKdmgA-FEd2sVbl7MGroRg" name="cours">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fh9LOA-FEd2sVbl7MGroRg" name="Association3" memberEnd="_fh9LOQ-FEd2sVbl7MGroRg _fh9LPA-FEd2sVbl7MGroRg">
+        <ownedEnd xmi:id="_fh9LOQ-FEd2sVbl7MGroRg" name="action" type="_nDxMQA-EEd2sVbl7MGroRg" isUnique="false" association="_fh9LOA-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fh9LOg-FEd2sVbl7MGroRg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fh9LOw-FEd2sVbl7MGroRg"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_fh9LPA-FEd2sVbl7MGroRg" name="compte" type="_RkdyEA-EEd2sVbl7MGroRg" association="_fh9LOA-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fh9LPQ-FEd2sVbl7MGroRg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fh9LPg-FEd2sVbl7MGroRg" value="1"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_oNszUA-FEd2sVbl7MGroRg" name="Association4" memberEnd="_oNszUQ-FEd2sVbl7MGroRg _oNszVA-FEd2sVbl7MGroRg">
+        <ownedEnd xmi:id="_oNszUQ-FEd2sVbl7MGroRg" name="action" type="_nDxMQA-EEd2sVbl7MGroRg" association="_oNszUA-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oNszUg-FEd2sVbl7MGroRg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oNszUw-FEd2sVbl7MGroRg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_oNszVA-FEd2sVbl7MGroRg" name="titres" type="_QTmKoA-FEd2sVbl7MGroRg" isUnique="false" association="_oNszUA-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oNszVQ-FEd2sVbl7MGroRg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oNszVg-FEd2sVbl7MGroRg"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_teW0oA-FEd2sVbl7MGroRg" name="Historique">
+        <ownedAttribute xmi:id="_vdDV8A-FEd2sVbl7MGroRg" name="valeur">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_x0r7sA-FEd2sVbl7MGroRg" name="date_histo">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDate"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_09tiJw-FEd2sVbl7MGroRg" name="Association5" memberEnd="_09tiKA-FEd2sVbl7MGroRg _09tiKw-FEd2sVbl7MGroRg">
+        <ownedEnd xmi:id="_09tiKA-FEd2sVbl7MGroRg" name="titre" type="_QTmKoA-FEd2sVbl7MGroRg" association="_09tiJw-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_09tiKQ-FEd2sVbl7MGroRg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_09tiKg-FEd2sVbl7MGroRg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_09tiKw-FEd2sVbl7MGroRg" name="historiques" type="_teW0oA-FEd2sVbl7MGroRg" isUnique="false" association="_09tiJw-FEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_09tiLA-FEd2sVbl7MGroRg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_09tiLQ-FEd2sVbl7MGroRg"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_NJ7uMg-JEd2sVbl7MGroRg" name="BourseCorba">
+      <packagedElement xmi:type="uml:Class" xmi:id="_OzgUEA-JEd2sVbl7MGroRg" name="Bourse" clientDependency="_DIg3Iw-KEd2sVbl7MGroRg _DTA28w-KEd2sVbl7MGroRg _DoTKcw-KEd2sVbl7MGroRg">
+        <ownedOperation xmi:id="_ZM80IA-JEd2sVbl7MGroRg" name="getServiceWeb">
+          <ownedParameter xmi:id="_6c2ukA-JEd2sVbl7MGroRg" name="result" type="_2cvIGA-JEd2sVbl7MGroRg" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_bwPQQA-JEd2sVbl7MGroRg" name="connectUser">
+          <ownedParameter xmi:id="_mt_-UA-JEd2sVbl7MGroRg" name="login">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_p6iLwA-JEd2sVbl7MGroRg" name="mdp">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_-WM-sA-JEd2sVbl7MGroRg" name="Parameter1" type="_xat_sA-JEd2sVbl7MGroRg" direction="return"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_diq3MA-JEd2sVbl7MGroRg" name="connectAdmin">
+          <ownedParameter xmi:id="_tUrXYA-JEd2sVbl7MGroRg" name="login">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_ueEBUA-JEd2sVbl7MGroRg" name="mdp">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_AmJBAA-KEd2sVbl7MGroRg" name="Parameter1" type="_zaZ_gA-JEd2sVbl7MGroRg" direction="return"/>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_xat_sA-JEd2sVbl7MGroRg" name="Compte" clientDependency="_HBdMsw-MEd2sVbl7MGroRg _kNr2Uw-MEd2sVbl7MGroRg _27KXMw-OEd2sVbl7MGroRg _dRfY4A-PEd2sVbl7MGroRg">
+        <ownedOperation xmi:id="_B_knMA-MEd2sVbl7MGroRg" name="getTitres">
+          <ownedParameter xmi:id="_Hxtk8A-MEd2sVbl7MGroRg" name="Parameter1" type="_EcLMgA-MEd2sVbl7MGroRg" isUnique="false" direction="return">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MCoAgA-MEd2sVbl7MGroRg" value="*"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MwVbEA-MEd2sVbl7MGroRg"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_e5q_AA-MEd2sVbl7MGroRg" name="getTitre">
+          <ownedParameter xmi:id="_ftGnEA-MEd2sVbl7MGroRg" name="Parameter1" type="_hE1PAA-MEd2sVbl7MGroRg" direction="return"/>
+          <ownedParameter xmi:id="_mpqJgA-MEd2sVbl7MGroRg" name="id">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_ksuQ0A-OEd2sVbl7MGroRg" name="getMontantPortefeuille">
+          <ownedParameter xmi:id="_mv0xAA-OEd2sVbl7MGroRg" name="Parameter1" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_qFz1YA-OEd2sVbl7MGroRg" name="acheterAction">
+          <ownedParameter xmi:id="_tb0H4A-OEd2sVbl7MGroRg" name="idTitre">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_rWCHIA-OEd2sVbl7MGroRg" name="vendreAction">
+          <ownedParameter xmi:id="_vta-IA-OEd2sVbl7MGroRg" name="idAction">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_yivlcA-OEd2sVbl7MGroRg" name="positionnerAlarme">
+          <ownedParameter xmi:id="_DLh8oA-PEd2sVbl7MGroRg" name="a" type="_0grRwA-OEd2sVbl7MGroRg"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_G_U-YA-PEd2sVbl7MGroRg" name="cash">
+          <ownedParameter xmi:id="_IffwoA-PEd2sVbl7MGroRg" name="Parameter1" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_QLjdYA-PEd2sVbl7MGroRg" name="getActionsAvecMontants">
+          <ownedParameter xmi:id="_hsVzkA-PEd2sVbl7MGroRg" name="Parameter1" type="_WvUFUA-PEd2sVbl7MGroRg" isUnique="false" direction="return">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kZHi4A-PEd2sVbl7MGroRg" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_zaZ_gA-JEd2sVbl7MGroRg" name="Admin" clientDependency="_PzPn4w-LEd2sVbl7MGroRg">
+        <ownedOperation xmi:id="_klhZcA-KEd2sVbl7MGroRg" name="insererUtilisateur">
+          <ownedParameter xmi:id="_mvVloA-KEd2sVbl7MGroRg" name="Parameter1" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_p9I-YA-KEd2sVbl7MGroRg" name="nom">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_qEJlUA-KEd2sVbl7MGroRg" name="prenom">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_qN7MYA-KEd2sVbl7MGroRg" name="login">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_qUtw4A-KEd2sVbl7MGroRg" name="mdp">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_qbDCYA-KEd2sVbl7MGroRg" name="role">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_00tk4A-KEd2sVbl7MGroRg" name="creerCompte">
+          <ownedParameter xmi:id="_5HNU0A-KEd2sVbl7MGroRg" name="cash">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="__sF-IA-KEd2sVbl7MGroRg" name="Parameter1" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_CgzhcA-LEd2sVbl7MGroRg" name="affecterCompte">
+          <ownedParameter xmi:id="_D5M3wA-LEd2sVbl7MGroRg" name="idUser">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_HLo44A-LEd2sVbl7MGroRg" name="idCompte">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_KkWhIA-LEd2sVbl7MGroRg" name="getComptes">
+          <ownedParameter xmi:id="_Q1oR8A-LEd2sVbl7MGroRg" name="Parameter1" type="_OB8CUA-LEd2sVbl7MGroRg" isUnique="false" direction="return">
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UPd7kA-LEd2sVbl7MGroRg" value="*"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_mXIEgA-LEd2sVbl7MGroRg" name="ajoutCash">
+          <ownedParameter xmi:id="_qPv74A-LEd2sVbl7MGroRg" name="idCompte">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_uXXRgA-LEd2sVbl7MGroRg" name="valeur">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_nmbJMA-LEd2sVbl7MGroRg" name="diminuerCash">
+          <ownedParameter xmi:id="_0v0BUA-LEd2sVbl7MGroRg" name="idCompte">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_3EQJIA-LEd2sVbl7MGroRg" name="valeur">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_2cvIGA-JEd2sVbl7MGroRg" name="ServiceWeb">
+        <ownedOperation xmi:id="_FhZaEA-KEd2sVbl7MGroRg" name="creerTitre">
+          <ownedParameter xmi:id="_HdyOQA-KEd2sVbl7MGroRg" name="libelle">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_JfTaEA-KEd2sVbl7MGroRg" name="cours">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_Roa2QA-KEd2sVbl7MGroRg" name="Parameter1" direction="return">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_VdhfkA-KEd2sVbl7MGroRg" name="majCoursAction">
+          <ownedParameter xmi:id="_XLWTUA-KEd2sVbl7MGroRg" name="idTitre">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_dbZ8IA-KEd2sVbl7MGroRg" name="nouveauCours">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_DIg3Iw-KEd2sVbl7MGroRg" name="Dependency1" supplier="_xat_sA-JEd2sVbl7MGroRg" client="_OzgUEA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_DTA28w-KEd2sVbl7MGroRg" name="Dependency2" supplier="_zaZ_gA-JEd2sVbl7MGroRg" client="_OzgUEA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_DoTKcw-KEd2sVbl7MGroRg" name="Dependency3" supplier="_2cvIGA-JEd2sVbl7MGroRg" client="_OzgUEA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_OB8CUA-LEd2sVbl7MGroRg" name="CompteAdmin">
+        <ownedAttribute xmi:id="_evBDoA-LEd2sVbl7MGroRg" name="nom">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fH9IEA-LEd2sVbl7MGroRg" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_PzPn4w-LEd2sVbl7MGroRg" name="Dependency4" supplier="_OB8CUA-LEd2sVbl7MGroRg" client="_zaZ_gA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_EcLMgA-MEd2sVbl7MGroRg" name="Titre">
+        <ownedAttribute xmi:id="_SdZEgA-MEd2sVbl7MGroRg" name="libelle">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_T471cA-MEd2sVbl7MGroRg" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_UfvWwA-MEd2sVbl7MGroRg" name="cours">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDouble"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_HBdMsw-MEd2sVbl7MGroRg" name="Dependency5" supplier="_EcLMgA-MEd2sVbl7MGroRg" client="_xat_sA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_hE1PAA-MEd2sVbl7MGroRg" name="TitreDetaille">
+        <ownedAttribute xmi:id="_rwQ28g-MEd2sVbl7MGroRg" name="libelle">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_snWP8A-MEd2sVbl7MGroRg" name="id">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_tNLg4A-MEd2sVbl7MGroRg" name="dateIntroduction">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_vZSMEA-MEd2sVbl7MGroRg" name="coursIntroduction">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_wnwxYA-MEd2sVbl7MGroRg" name="cousLePlusHaut">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_yE5dwA-MEd2sVbl7MGroRg" name="coursLePlusBas">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_kNr2Uw-MEd2sVbl7MGroRg" name="Dependency6" supplier="_hE1PAA-MEd2sVbl7MGroRg" client="_xat_sA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_z9c60A-MEd2sVbl7MGroRg" name="Historique">
+        <ownedAttribute xmi:id="_MPKLMA-NEd2sVbl7MGroRg" name="valeur">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_MjrpsA-NEd2sVbl7MGroRg" name="dateHistorique">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_6KjWQA-MEd2sVbl7MGroRg" name="Association1" memberEnd="_6KjWQQ-MEd2sVbl7MGroRg _6KjWRA-MEd2sVbl7MGroRg">
+        <ownedEnd xmi:id="_6KjWQQ-MEd2sVbl7MGroRg" name="titre" type="_hE1PAA-MEd2sVbl7MGroRg" association="_6KjWQA-MEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6KjWQg-MEd2sVbl7MGroRg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6KjWQw-MEd2sVbl7MGroRg" value="1"/>
+        </ownedEnd>
+        <ownedEnd xmi:id="_6KjWRA-MEd2sVbl7MGroRg" name="histo" type="_z9c60A-MEd2sVbl7MGroRg" isUnique="false" aggregation="composite" association="_6KjWQA-MEd2sVbl7MGroRg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6KjWRQ-MEd2sVbl7MGroRg" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6KjWRg-MEd2sVbl7MGroRg"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_0grRwA-OEd2sVbl7MGroRg" name="Alarme">
+        <ownedAttribute xmi:id="_4ylL0A-OEd2sVbl7MGroRg" name="type">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_5Natsg-OEd2sVbl7MGroRg" name="seuil">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+        <ownedOperation xmi:id="_6vdIMA-OEd2sVbl7MGroRg" name="notifie"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_27KXMw-OEd2sVbl7MGroRg" name="Dependency7" supplier="_0grRwA-OEd2sVbl7MGroRg" client="_xat_sA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WvUFUA-PEd2sVbl7MGroRg" name="ActionMontant">
+        <ownedAttribute xmi:id="_ZuZFkA-PEd2sVbl7MGroRg" name="libelleTitre">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_bSTIUA-PEd2sVbl7MGroRg" name="idAction">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_b9A5QA-PEd2sVbl7MGroRg" name="montant">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_dRfY4A-PEd2sVbl7MGroRg" name="Dependency8" supplier="_WvUFUA-PEd2sVbl7MGroRg" client="_xat_sA-JEd2sVbl7MGroRg"/>
+      <profileApplication xmi:id="_FI758A-OEd2sVbl7MGroRg">
+        <eAnnotations xmi:id="_FI758Q-OEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="ProfilCorba.uml#_9W1PkQ-NEd2sVbl7MGroRg"/>
+        </eAnnotations>
+        <appliedProfile href="ProfilCorba.uml#_8Pm7EA-IEd2sVbl7MGroRg"/>
+      </profileApplication>
+    </packagedElement>
+  </uml:Model>
+  <ProfilCorba:CORBA_ATTRIBUTE xmi:id="_H6cYQA-OEd2sVbl7MGroRg" base_Property="_MPKLMA-NEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_ATTRIBUTE xmi:id="_IWbJoA-OEd2sVbl7MGroRg" base_Property="_MjrpsA-NEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_INTERFACE xmi:id="_I2nsoA-OEd2sVbl7MGroRg" base_Class="_OzgUEA-JEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_INTERFACE xmi:id="_JGCBoA-OEd2sVbl7MGroRg" base_Class="_zaZ_gA-JEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_INTERFACE xmi:id="_JfKTUA-OEd2sVbl7MGroRg" base_Class="_2cvIGA-JEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_STRUCT xmi:id="_KIx4EA-OEd2sVbl7MGroRg" base_Class="_OB8CUA-LEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_INTERFACE xmi:id="_KZP9AA-OEd2sVbl7MGroRg" base_Class="_xat_sA-JEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_STRUCT xmi:id="_K3gmUA-OEd2sVbl7MGroRg" base_Class="_EcLMgA-MEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_STRUCT xmi:id="_LI_X4A-OEd2sVbl7MGroRg" base_Class="_hE1PAA-MEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_INTERFACE xmi:id="_Lk6e4A-OEd2sVbl7MGroRg" base_Class="_z9c60A-MEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_INTERFACE xmi:id="_15fe0A-OEd2sVbl7MGroRg" base_Class="_0grRwA-OEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_ATTRIBUTE xmi:id="_5kABsA-OEd2sVbl7MGroRg" base_Property="_4ylL0A-OEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_ATTRIBUTE xmi:id="_52lmgA-OEd2sVbl7MGroRg" base_Property="_5Natsg-OEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_STRUCT xmi:id="_X8aKkA-PEd2sVbl7MGroRg" base_Class="_WvUFUA-PEd2sVbl7MGroRg"/>
+</xmi:XMI>
