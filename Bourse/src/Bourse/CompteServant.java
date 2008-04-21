@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 import BourseCorba.ActionMontant;
 import BourseCorba.Alarme;
+import BourseCorba.Historique;
 import BourseCorba.ServerException;
 import BourseCorba.Titre;
 import BourseCorba.TitreDetaille;
@@ -13,6 +14,7 @@ import dao.Action;
 import dao.ActionDAO;
 import dao.Compte;
 import dao.CompteDAO;
+import dao.HistoriqueDAO;
 import dao.TitreDAO;
 
 public class CompteServant extends _CompteImplBase {
@@ -94,7 +96,43 @@ public class CompteServant extends _CompteImplBase {
 	// TODO !!!!
 	public TitreDetaille getTitre(int id) throws ServerException{
 		TitreDetaille td = new TitreDetaille () ;
-		
+		dao.Titre t;
+		try {
+			// information from the titre
+			t = TitreDAO.getInstance().getTitre(id);
+			td.id = id ;
+			td.libelle = t.getLibelle() ;
+			td.dateIntroduction = t.getDateIntro();
+			td.coursIntrodution = t.getCoursIntro() ;
+			Collection<dao.Historique> listeHistoriques = HistoriqueDAO.getInstance().getHistoriquesByTitre(id);
+			Historique[] historiques = new HistoriqueServant[listeHistoriques.size()];
+			double plushaut = 0 ;
+			double plusbas = Double.MAX_VALUE ;
+			int i = 0 ;
+			for (dao.Historique h : listeHistoriques) {
+				if (h.getValeur() > plushaut) {
+					plushaut = h.getValeur() ;
+				}
+				if (h.getValeur() < plusbas){
+					plusbas = h.getValeur() ;
+				}
+				historiques[i] = new HistoriqueServant(h.getId()) ;
+				i ++ ;
+			}
+			if (plusbas != Double.MAX_VALUE) {
+				td.coursLePlusBas = plusbas ;				
+			}
+			else {
+				td.coursLePlusBas = 0 ;
+			}
+			td.coursLePlusHaut = plushaut ;
+			// information from histo
+			td.histo = historiques  ;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new ServerException(e.getMessage());
+		} 
 		return td;
 	}
 
@@ -120,7 +158,6 @@ public class CompteServant extends _CompteImplBase {
 
 	public void positionnerAlarme(Alarme a) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void vendreAction(int idAction)throws ServerException {
