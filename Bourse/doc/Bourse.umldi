@@ -265,7 +265,7 @@
   </diagrams>
   <subdiagrams xmi:id="_MytTQA-EEd2sVbl7MGroRg" activeDiagram="_My8j0A-EEd2sVbl7MGroRg">
     <model href="Bourse.uml#_w8IxIM37EdqwVrslYOdUDA"/>
-    <diagrams xmi:id="_My8j0A-EEd2sVbl7MGroRg" position="0,0" size="100,100" name="Bourse" viewport="0,81">
+    <diagrams xmi:id="_My8j0A-EEd2sVbl7MGroRg" position="0,0" size="100,100" name="Bourse" viewport="0,0">
       <property xmi:id="_NJn-cA-EEd2sVbl7MGroRg" key="pageFormatName" value="A4"/>
       <property xmi:id="_NJolgA-EEd2sVbl7MGroRg" key="diagramWidth" value="840"/>
       <property xmi:id="_NJolgQ-EEd2sVbl7MGroRg" key="diagramHeight" value="1188"/>
@@ -521,7 +521,7 @@
   </subdiagrams>
   <subdiagrams xmi:id="_Oeu98A-JEd2sVbl7MGroRg">
     <model href="Bourse.uml#_NJ7uMg-JEd2sVbl7MGroRg"/>
-    <diagrams xmi:id="_Oe25wA-JEd2sVbl7MGroRg" position="0,0" size="100,100" name="unnamed" viewport="0,0">
+    <diagrams xmi:id="_Oe25wA-JEd2sVbl7MGroRg" position="0,0" size="100,100" name="bourseCorba" viewport="0,0">
       <property xmi:id="_OfcvoA-JEd2sVbl7MGroRg" key="pageFormatName" value="A4"/>
       <property xmi:id="_OfcvoQ-JEd2sVbl7MGroRg" key="diagramWidth" value="840"/>
       <property xmi:id="_Ofcvog-JEd2sVbl7MGroRg" key="diagramHeight" value="1188"/>
