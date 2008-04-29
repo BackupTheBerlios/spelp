@@ -14,6 +14,7 @@ public class Util {
 							f.setAccessible(false);
 							return o ;
 						}
+						f.setAccessible(false);
 					} catch (IllegalArgumentException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
