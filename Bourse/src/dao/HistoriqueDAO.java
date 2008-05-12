@@ -65,7 +65,7 @@ public class HistoriqueDAO {
 			}
 			result.setId(rs.getInt(1));
 			result.setValeur(rs.getDouble(2));
-			result.setDate_histo(rs.getTime(3).toString());
+			result.setDate_histo(rs.getTimestamp(3).toString());
 			result.setId_titre(rs.getInt(4));
 		}
 		catch (SQLException e) {
