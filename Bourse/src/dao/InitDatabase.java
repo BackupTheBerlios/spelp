@@ -61,7 +61,7 @@ public class InitDatabase {
     	 "create table HISTORIQUE(" +
     	 	"id int, " +
     	 	"valeur double, " +
-    	 	"date_histo time, " +
+    	 	"date_histo timestamp, " +
     	 	"id_titre int" +
     	 ")";
     

@@ -23,7 +23,7 @@ public class HistoriqueDAO {
 				"%s, %s, '%s', %s)",
 				String.valueOf(idHisto),
 				h.getValeur(),
-				new java.sql.Time(new Date().getTime()).toString(),
+				new java.sql.Timestamp(new Date().getTime()).toString(),
 				h.getId_titre()
 		);
 		int rs = 0;
