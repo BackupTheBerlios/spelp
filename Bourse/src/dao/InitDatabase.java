@@ -45,6 +45,7 @@ public class InitDatabase {
       	 	"id int, " +
       	 	"type int, " +
       	 	"seuil double, " +
+      	 	"id_titre int, " +
       	 	"id_compte int" +
       	 ")";
     

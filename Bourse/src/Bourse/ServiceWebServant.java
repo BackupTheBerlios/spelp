@@ -31,6 +31,7 @@ public class ServiceWebServant extends _ServiceWebImplBase {
 			t.setCours(nouveauCours);
 			int idHIstorique = HistoriqueDAO.getInstance().creerHistorique(h);
 			TitreDAO.getInstance().updateTitre(t);
+			CompteServant.checkAlarmes(idTitre, nouveauCours);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

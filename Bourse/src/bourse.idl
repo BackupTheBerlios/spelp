@@ -34,11 +34,15 @@ module BourseCorba
 		ListeHistoriques histo ; 
 	} ;
 	
-	interface Alarme {
-		attribute short type ;
-		attribute double seuil ;
-		void notifie () ;
+	interface ClientAlarme {	
+		void notifie (in long idTitre, in double nouveauCours) ;
 	} ;
+
+	struct Alarme {
+		short type ;
+		double seuil ;
+		long idTitre ;
+	};
 	
 	
 	interface Compte
@@ -52,6 +56,8 @@ module BourseCorba
     	long acheterAction(in long idTitre) raises (ServerException);
     	void vendreAction (in long idAction) raises (ServerException);
     	void positionnerAlarme (in Alarme a) ;
+		void enregistrerClientAlarme (in ClientAlarme ca) ;
+
     	double cash () ;
     };
     

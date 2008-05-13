@@ -2,9 +2,11 @@ package Bourse;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 import BourseCorba.ActionMontant;
 import BourseCorba.Alarme;
+import BourseCorba.ClientAlarme;
 import BourseCorba.Historique;
 import BourseCorba.ServerException;
 import BourseCorba.Titre;
@@ -12,6 +14,7 @@ import BourseCorba.TitreDetaille;
 import BourseCorba._CompteImplBase;
 import dao.Action;
 import dao.ActionDAO;
+import dao.AlarmeDAO;
 import dao.Compte;
 import dao.CompteDAO;
 import dao.HistoriqueDAO;
@@ -20,14 +23,43 @@ import dao.TitreDAO;
 public class CompteServant extends _CompteImplBase {
 	private long id ; 
 	
+	private static List<CustomClientAlarm> clientsAlarme = new LinkedList<CustomClientAlarm>();
+	
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
+	}	
 
+	public static int SUP = 0 ;
+	public static int INF = 1 ;
+	public static void checkAlarmes (int idTitre, double cours) {
+		for (CustomClientAlarm c : clientsAlarme){
+			try {
+				Collection<dao.Alarme> alarmes = AlarmeDAO.getInstance().getAllAlarmesByIdCompte(c.getIdCompte());
+				for (dao.Alarme alarmeDuCompte : alarmes){
+					if (alarmeDuCompte.getId_titre() == idTitre){
+						if (alarmeDuCompte.getType() == SUP){
+							if (cours > alarmeDuCompte.getSeuil()){
+								c.getClient().notifie(idTitre,cours);
+							}
+						}
+						else {
+							if (cours < alarmeDuCompte.getSeuil()){
+								c.getClient().notifie(idTitre,cours);
+							}
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}
+	
 	public int acheterAction(int idTitre) throws ServerException{
 		try {
 			dao.Titre t = TitreDAO.getInstance().getTitre(idTitre);
@@ -93,7 +125,6 @@ public class CompteServant extends _CompteImplBase {
 		return result ;
 	}
 
-	// TODO !!!!
 	public TitreDetaille getTitre(int id) throws ServerException{
 		TitreDetaille td = new TitreDetaille () ;
 		dao.Titre t;
@@ -129,7 +160,6 @@ public class CompteServant extends _CompteImplBase {
 			// information from histo
 			td.histo = historiques  ;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new ServerException(e.getMessage());
 		} 
@@ -157,12 +187,28 @@ public class CompteServant extends _CompteImplBase {
 
 
 	public void positionnerAlarme(Alarme a) {
-		// TODO Auto-generated method stub
+		dao.Alarme al = new dao.Alarme();	
+		al.setSeuil(a.seuil);
+		al.setType(a.type);
+		al.setId_titre(a.idTitre);
+		al.setId_compte((int) this.id);
+		
+		try {
+			AlarmeDAO.getInstance().creerAlarme(al);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void vendreAction(int idAction)throws ServerException {
-		// TODO Auto-generated method stub
 
+	}
+
+	public void enregistrerClientAlarme(ClientAlarme ca) {
+		CustomClientAlarm custom = new CustomClientAlarm();
+		custom.setClient(ca);
+		custom.setIdCompte((int) this.id);
+		clientsAlarme.add(custom);
 	}
 
 }
