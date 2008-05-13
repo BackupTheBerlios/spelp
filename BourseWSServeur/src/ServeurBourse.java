@@ -10,6 +10,7 @@ import BourseCorba.ServiceWeb;
 
 
 public class ServeurBourse {
+
 	public Bourse connect() throws Exception {
 		// create and initialize the ORB
 		String[] args = new String[1] ;
@@ -42,6 +43,7 @@ public class ServeurBourse {
 	}
 
 	public void majCoursAction(int idTitre, double nouveauCours) {
+		
 		try{
 			Bourse bourseRef = connect();
 			ServiceWeb serviceWebRef = bourseRef.getServiceWeb() ;
