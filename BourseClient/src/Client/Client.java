@@ -1,7 +1,5 @@
 package Client;
 
-import javax.naming.directory.InitialDirContext;
-
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;
 import org.omg.CosNaming.NamingContext;
@@ -9,6 +7,7 @@ import org.omg.CosNaming.NamingContextHelper;
 
 import BourseCorba.ActionMontant;
 import BourseCorba.Admin;
+import BourseCorba.Alarme;
 import BourseCorba.Bourse;
 import BourseCorba.BourseHelper;
 import BourseCorba.Compte;
@@ -20,6 +19,9 @@ import BourseCorba.TitreDetaille;
 
 public class Client {
 
+	public static short SUP = 0 ;
+	public static short INF = 1 ;
+	
 	/**
 	 * @param args
 	 */
@@ -27,7 +29,7 @@ public class Client {
 		try{
 			
 			// create and initialize the ORB
-            ORB orb = ORB.init(args, null);
+            ORB orb = ORB.init(args, null);  
  
             // get the root naming context
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
@@ -37,7 +39,7 @@ public class Client {
             NameComponent nc = new NameComponent("Bourse", "");
             NameComponent path[] = {nc}; 
          
-            Bourse bourseRef = BourseHelper.narrow(ncRef.resolve(path));
+            Bourse bourseRef = BourseHelper.narrow(ncRef.resolve(path));    
             
             // Creation de deux comptes par l'admin
             Admin adminRef = bourseRef.connectAdmin("admin", "admin");     
@@ -115,9 +117,34 @@ public class Client {
                 	}                	
                 }               
                 
+                // Connection du client Alarme
+                // create servant and register it with the ORB
+    			ClientAlarmeServant clientAlarmeRef = new ClientAlarmeServant();
+    			orb.connect(clientAlarmeRef);			
+
+    			// bind the Object Reference in Naming
+    			nc = new NameComponent("ClientAlarme", "");
+    			NameComponent path2[] = {nc}; 
+    			ncRef.rebind(path2, clientAlarmeRef);
+    			compteNico.enregistrerClientAlarme(clientAlarmeRef);
+    			
+    			// positionnement d'une alarme sur le titre alcatel
+    			Alarme al = new Alarme();
+    			al.seuil = 1.0;
+    			al.idTitre = titreAlcatel;
+    			al.type = INF;
+    			
+    			compteNico.positionnerAlarme(al);
+    			
+    			// Mise a hour du cours d'una action via le service web
+                serviceWebRef.majCoursAction(titreAlcatel, 0.5);        
             }
             
-           
+         // wait for invocations from server
+			java.lang.Object sync = new java.lang.Object();
+			synchronized (sync) {
+				sync.wait();
+			}
             
         } catch (Exception e) {
             System.out.println("ERROR : " + e) ;
