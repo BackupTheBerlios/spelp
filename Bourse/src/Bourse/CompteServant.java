@@ -36,11 +36,13 @@ public class CompteServant extends _CompteImplBase {
 	public static int SUP = 0 ;
 	public static int INF = 1 ;
 	public static void checkAlarmes (int idTitre, double cours) {
+		System.out.println("check alarme titre :"+idTitre+" cours : "+cours);
 		for (CustomClientAlarm c : clientsAlarme){
 			try {
 				Collection<dao.Alarme> alarmes = AlarmeDAO.getInstance().getAllAlarmesByIdCompte(c.getIdCompte());
 				for (dao.Alarme alarmeDuCompte : alarmes){
 					if (alarmeDuCompte.getId_titre() == idTitre){
+						System.out.println("check alarme seuil : "+alarmeDuCompte.getSeuil());
 						if (alarmeDuCompte.getType() == SUP){
 							if (cours > alarmeDuCompte.getSeuil()){
 								c.getClient().notifie(idTitre,cours);

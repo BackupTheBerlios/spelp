@@ -21,9 +21,9 @@ public class AlarmeDAO {
 		String update = String.format(
 				"INSERT INTO ALARME (id, type, seuil, id_titre, id_compte) VALUES ( " +
 				"%s, %s, %s, %s, %s)",
-				String.valueOf(idAlarme),
-				String.valueOf(alarme.getId()),
+				String.valueOf(idAlarme),			
 				String.valueOf(alarme.getType()),
+				String.valueOf(alarme.getSeuil()),
 				String.valueOf(alarme.getId_titre()),
 				String.valueOf(alarme.getId_compte())
 		);
