@@ -46,6 +46,64 @@ public class ActionDAO {
 		}
 		return action ;
 	}
+	
+	public void supprimerAction(int idAction) throws Exception {		
+		String update = String.format(
+				"DELETE FROM ACTION WHERE id = %s",
+				String.valueOf(idAction)			
+		);
+		int rs = 0;
+		Statement s = null ;
+		try {
+			s = BourseDAO.getInstance().getConnection().createStatement();
+			rs = s.executeUpdate(update);
+			BourseDAO.getInstance().getConnection().commit();		
+		}
+		catch (SQLException e) {
+			e.printStackTrace() ;
+			throw e  ;
+		}
+		finally {
+			try {
+				s.close();
+			} catch (SQLException e) {
+				e.printStackTrace() ;
+				throw e  ;
+			}
+		}
+	}
+	
+	public Action getActionById(long id) throws Exception {
+		Action result = new Action();
+		
+		String selectUtilisateur ="SELECT id,id_titre,id_compte " +
+				"FROM ACTION " +
+				"WHERE id = " + id ;
+		ResultSet rs = null ;
+		Statement s = null ;
+		try {
+			s = BourseDAO.getInstance().getConnection().createStatement();
+			rs = s.executeQuery(selectUtilisateur);
+			while (rs.next())
+			{				
+				result.setId(rs.getInt(1));
+				result.setId_titre(rs.getInt(2));
+				result.setId_compte(rs.getInt(3));				
+			}
+		}
+		catch (SQLException e) {
+			throw (e); 
+		}
+		finally {
+			try {
+				rs.close() ;
+				s.close();
+			} catch (SQLException e) {
+				throw (e);
+			}
+		} 
+		return result ;
+	}
 
 	public Collection<Action> getAllActionsByIdCompte(long id) throws Exception {
 		Collection <Action> result = new LinkedList<Action>();

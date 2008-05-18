@@ -73,13 +73,30 @@ public class CompteServant extends _CompteImplBase {
 			nouvelleAction.setId_compte((int) id);
 			nouvelleAction.setId_titre(t.getCode());
 			nouvelleAction = ActionDAO.getInstance().creerAction (nouvelleAction) ;
+			CompteDAO.getInstance().updateCompte(compteCourant);			
+			return nouvelleAction.getId();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ServerException(e.getMessage());
+		}		
+	}
+	
+	public void vendreAction(int idAction)throws ServerException {
+		try {
+			Action aVendre = ActionDAO.getInstance().getActionById(idAction);
+			dao.Titre t = TitreDAO.getInstance().getTitre(aVendre.getId_titre());
+			Compte compteCourant = CompteDAO.getInstance().getCompte(String.valueOf(id));
+			double cash = compteCourant.getCash() ;
+			cash = cash + t.getCours() ;
+			compteCourant.setCash(cash) ;
+			ActionDAO.getInstance().supprimerAction(idAction)  ;
 			CompteDAO.getInstance().updateCompte(compteCourant);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServerException(e.getMessage());
 		}
-		return 0;
 	}
+
 
 	public double cash() {
 		double result = 0 ;
@@ -200,10 +217,6 @@ public class CompteServant extends _CompteImplBase {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void vendreAction(int idAction)throws ServerException {
-
 	}
 
 	public void enregistrerClientAlarme(ClientAlarme ca) {
