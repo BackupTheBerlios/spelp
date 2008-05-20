@@ -62,15 +62,26 @@ public class AdminFrame extends javax.swing.JInternalFrame {
         jButton3.setText("jButton3");
 
         setClosable(true);
+        setMaximizable(true);
         setResizable(true);
         setTitle("Administration");
 
-        jTable1.setModel(new AdminComtpesModel(new Object[][]{}, new String[]{"id","nom"} ));
+        jTable1.setModel(new AdminComtpesModel(new Object[][]{}, new String[]{"id","nom","cash"} ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("+ cash");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("- cash");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("nouvel utilisateur");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -94,19 +105,21 @@ public class AdminFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(20, 20, 20))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, 0, 0, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -114,16 +127,15 @@ public class AdminFrame extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addComponent(jButton4)
+                        .addGap(181, 181, 181))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,6 +180,50 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 }//GEN-LAST:event_jButton1ActionPerformed
 
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+// TODO add your handling code here:
+    if (jTable1.getSelectedRow() != -1){
+            try {
+                Double value = getValue();
+                if (value != null) {
+                    int idCompte = Integer.valueOf((String) jTable1.getValueAt(jTable1.getSelectedRow(),0));
+                    adminRef.ajoutCash(idCompte, value);
+                    initTable();
+                }
+            } catch (ServerException ex) {
+                Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    else {
+        JOptionPane.showMessageDialog(owner,"Selectionnez un compte");
+    }
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+// TODO add your handling code here:
+     if (jTable1.getSelectedRow() != -1){
+            try {
+                Double value = getValue();
+                if (value != null) {
+                    int idCompte = Integer.valueOf((String) jTable1.getValueAt(jTable1.getSelectedRow(),0));
+                    adminRef.diminuerCash(idCompte, value);
+                    initTable();
+                }
+            } catch (ServerException ex) {
+                Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    else {
+        JOptionPane.showMessageDialog(owner,"Selectionnez un compte");
+    }
+}//GEN-LAST:event_jButton4ActionPerformed
+private Double getValue () {
+    String value = JOptionPane.showInputDialog("Cash ? ") ;
+    if (value.isEmpty()) {
+        return null ;
+    }
+    return Double.parseDouble(value);
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -182,20 +238,21 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void initTable() {
         CompteAdmin[] comptes = adminRef.getComptes();
-        String[][] model = new String[comptes.length][2] ;
+        Object[][] model = new Object[comptes.length][3] ;
         for (int i = 0 ; i < comptes.length ; i ++){
             model[i][0] = comptes[i].id ;
             model[i][1] = comptes[i].nom ;
+            model[i][2] = comptes[i].cash ;
         }
-        jTable1.setModel(new AdminComtpesModel(model, new String[]{"id","nom"} ));
+        jTable1.setModel(new AdminComtpesModel(model, new String[]{"id","nom","cash"} ));
     }
     private class AdminComtpesModel extends DefaultTableModel{
         
         Class[] types = new Class [] {
-            java.lang.String.class, java.lang.String.class
+            java.lang.String.class, java.lang.String.class, java.lang.Double.class
         };
         boolean[] canEdit = new boolean [] {
-            false, false
+            false, false, false
         };
 
         private AdminComtpesModel(Object[][] model, String[] string) {

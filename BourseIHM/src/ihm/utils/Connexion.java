@@ -57,9 +57,9 @@ public class Connexion extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         user = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        mdp = new javax.swing.JTextField();
         ok = new javax.swing.JButton();
         annuler = new javax.swing.JButton();
+        mdp = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -84,6 +84,12 @@ public class Connexion extends javax.swing.JDialog {
             }
         });
 
+        mdp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mdpActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,9 +106,9 @@ public class Connexion extends javax.swing.JDialog {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                            .addComponent(mdp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mdp, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -162,6 +168,10 @@ private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     this.aStatus = status.CANCEL ;
 }//GEN-LAST:event_annulerActionPerformed
 
+private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_mdpActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -184,7 +194,7 @@ private void annulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField mdp;
+    private javax.swing.JPasswordField mdp;
     private javax.swing.JButton ok;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables

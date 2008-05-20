@@ -9,8 +9,12 @@ package ihm.admin;
 import ihm.utils.Connexion;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 
 /**
  *
@@ -22,6 +26,11 @@ public class AdminNewUser extends javax.swing.JDialog {
     public AdminNewUser(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        mdp.setInputVerifier(new InputVerifier() {
+            public boolean verify(JComponent input) {
+               return mdp.getPassword().length <= 6 ;
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -74,6 +83,12 @@ public class AdminNewUser extends javax.swing.JDialog {
         prenom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prenomActionPerformed(evt);
+            }
+        });
+
+        mdp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mdpActionPerformed(evt);
             }
         });
 
@@ -153,6 +168,12 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     aStatus = Connexion.status.CANCEL ;
     this.dispose();
 }//GEN-LAST:event_jButton2ActionPerformed
+
+private void mdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mdpActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_mdpActionPerformed
+
+
 
     /**
     * @param args the command line arguments

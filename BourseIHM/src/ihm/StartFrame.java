@@ -9,8 +9,10 @@ package ihm;
 import BourseCorba.Admin;
 import BourseCorba.Bourse;
 import BourseCorba.BourseHelper;
+import BourseCorba.Compte;
 import BourseCorba.ServerException;
 import ihm.admin.AdminFrame;
+import ihm.user.UserFrame;
 import ihm.utils.Connexion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +67,11 @@ public class StartFrame extends javax.swing.JFrame {
         });
 
         jButton2.setText("User");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("WebService");
 
@@ -148,17 +155,30 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             internal.add(adminFrame);
         } catch (ServerException ex) {
            JOptionPane.showMessageDialog(this, "Connexion impossible pour : " + connection.getUser());
-        }
-        
-        
-        
-        
-       
-        
-         
+        } catch (Exception ex2) {
+            JOptionPane.showMessageDialog(this, "Connexion impossible pour : " + connection.getUser());
+        } 
     }
    
 }//GEN-LAST:event_jButton1ActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+// TODO add your handling code here:
+     Connexion connection = new Connexion(this, false);
+    Connexion.status aStatus = connection.showConnection();
+    if (aStatus == Connexion.status.OK){
+        try {
+            Compte compteRef = bourseRef.connectUser(connection.getUser(), connection.getMdp());
+            UserFrame userFrame = new UserFrame(this,compteRef);
+            userFrame.setVisible(true);
+            internal.add(userFrame);
+        } catch (ServerException ex) {
+           JOptionPane.showMessageDialog(this, "Connexion impossible pour : " + connection.getUser());
+        } catch (Exception ex2) {
+            JOptionPane.showMessageDialog(this, "Connexion impossible pour : " + connection.getUser());
+        } 
+    }
+}//GEN-LAST:event_jButton2ActionPerformed
 
     /**
     * @param args the command line arguments
