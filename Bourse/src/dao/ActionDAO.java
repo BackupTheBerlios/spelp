@@ -110,7 +110,8 @@ public class ActionDAO {
 		
 		String selectUtilisateur ="SELECT id,id_titre,id_compte " +
 				"FROM ACTION " +
-				"WHERE id_compte = " + id ;
+				"WHERE id_compte = " + id +
+				" ORDER BY id_titre";
 		ResultSet rs = null ;
 		Statement s = null ;
 		try {

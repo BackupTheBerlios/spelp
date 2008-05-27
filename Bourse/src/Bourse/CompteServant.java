@@ -161,11 +161,11 @@ public class CompteServant extends _CompteImplBase {
 			td.coursIntrodution = t.getCoursIntro() ;
 			Collection<dao.Historique> listeHistoriques = HistoriqueDAO.getInstance().getHistoriquesByTitre(id);
 			Historique[] historiques = new HistoriqueServant[listeHistoriques.size()];
-			double plushaut = 0 ;
-			double plusbas = Double.MAX_VALUE ;
+			double plushaut = td.coursIntrodution ;
+			double plusbas = td.coursIntrodution;
 			int i = 0 ;
-			for (dao.Historique h : listeHistoriques) {
-				if (h.getValeur() > plushaut) {
+			for (dao.Historique h : listeHistoriques) {	
+				if (h.getValeur() >= plushaut) {
 					plushaut = h.getValeur() ;
 				}
 				if (h.getValeur() < plusbas){

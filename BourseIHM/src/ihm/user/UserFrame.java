@@ -6,10 +6,14 @@
 
 package ihm.user;
 
+import BourseCorba.ActionMontant;
 import BourseCorba.Compte;
-import BourseCorba.CompteAdmin;
+import BourseCorba.ServerException;
 import BourseCorba.Titre;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,9 +32,26 @@ public class UserFrame extends javax.swing.JInternalFrame {
          initComponents();
          owner = aThis ;
          this.compteRef = compteRef ;
-         initTitre();
-         majCash();
-         majPortefeuille();
+         initAll () ;
+         
+    }
+
+    private void initActions() {
+        ActionMontant[] montants = compteRef.getActionsAvecMontant() ;
+        Object[][] model = new Object[montants.length][3] ;
+        for (int i = 0 ; i < montants.length ; i ++){
+            model[i][0] = montants[i].idAction ;
+            model[i][1] = montants[i].libelleTitre ;
+            model[i][2] = montants[i].montant ;
+        }
+        actions.setModel(new TitresModel(model, new String[]{"id Action","libelle","cours"} ));
+    }
+
+    private void initAll() {
+        initTitre();
+        initActions();
+        majCash();
+        majPortefeuille();
     }
 
     /** This method is called from within the constructor to
@@ -50,9 +71,15 @@ public class UserFrame extends javax.swing.JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        titreTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        actions = new javax.swing.JTable();
+        jToggleButton1 = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -61,12 +88,14 @@ public class UserFrame extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Montants"));
 
+        cash.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         cash.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabel1.setText("cash disponible : ");
 
         jLabel3.setText("Total Portefeuille : ");
 
+        portefeuille.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         portefeuille.setBorder(new javax.swing.border.MatteBorder(null));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -77,29 +106,42 @@ public class UserFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(portefeuille, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(portefeuille, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(portefeuille, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(cash, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Titres"));
 
-        jTable1.setModel(new TitresModel(new Object[][]{}, new String[]{"id","libelle","cours"} ));
-        jScrollPane1.setViewportView(jTable1);
+        titreTable.setModel(new TitresModel(new Object[][]{}, new String[]{"id","libelle","cours"} ));
+        jScrollPane1.setViewportView(titreTable);
+
+        jButton1.setText("Acheter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Détail");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,28 +149,53 @@ public class UserFrame extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(187, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bourse", jPanel2);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Actions disponibles"));
 
+        actions.setModel(new TitresModel(new Object[][]{}, new String[]{"id Action","libelle","cours"} ));
+        jScrollPane2.setViewportView(actions);
+
+        jToggleButton1.setText("vendre");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton1)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 254, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Portefeuille", jPanel3);
@@ -141,10 +208,17 @@ public class UserFrame extends javax.swing.JInternalFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
+            .addGap(0, 265, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Alarmes", jPanel4);
+
+        jButton3.setText("Rafraichir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,25 +228,99 @@ public class UserFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+    // code for : détail
+    if (titreTable.getSelectedRow() != -1){
+        TitresModel model = (TitresModel) titreTable.getModel() ;
+        int id = model.getId(titreTable.getSelectedRow());   
+        PopUpDetailledTitle dialog = new PopUpDetailledTitle(owner, true, id, compteRef);
+        dialog.show();
+    }
+    else {
+       JOptionPane.showMessageDialog(owner,"Vous n'avez pas sélectionner de titre", "Warning", JOptionPane.WARNING_MESSAGE); 
+    }
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    initAll();
+}//GEN-LAST:event_jButton3ActionPerformed
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     if (titreTable.getSelectedRow() != -1){
+        
+            TitresModel model = (TitresModel) titreTable.getModel();
+            final int id = model.getId(titreTable.getSelectedRow());
+            String nbActions = JOptionPane.showInputDialog("Combien d'actions voulez vous acheter ?");
+            final int nb = Integer.valueOf(nbActions);
+            new Thread(new Runnable() {
+                public void run() {
+                    for (int i = 0 ; i < nb ; i++){
+                        try {
+                            compteRef.acheterAction(id);
+                        } catch (ServerException ex) {
+                            Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    initAll();
+                }
+             }).start();
+       
+    }
+    else {
+       JOptionPane.showMessageDialog(owner,"Vous n'avez pas sélectionner de titre", "Warning", JOptionPane.WARNING_MESSAGE); 
+    }
+    
+}//GEN-LAST:event_jButton1ActionPerformed
+
+private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+     if (actions.getSelectedRow() != -1){
+            final TitresModel model = (TitresModel) actions.getModel();
+            new Thread(new Runnable() {
+                public void run() {
+                    for (int i = 0 ; i < actions.getSelectedRowCount() ; i++){
+                        try {
+                            compteRef.vendreAction(actions.getSelectedRows()[i]);
+                        } catch (ServerException ex) {
+                            Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    initAll();
+                }
+             }).start();
+       
+    }
+    else {
+       JOptionPane.showMessageDialog(owner,"Vous n'avez pas sélectionner d'actions", "Warning", JOptionPane.WARNING_MESSAGE); 
+    }
+}//GEN-LAST:event_jToggleButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable actions;
     private javax.swing.JLabel cash;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -180,9 +328,11 @@ public class UserFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel portefeuille;
+    private javax.swing.JTable titreTable;
     // End of variables declaration//GEN-END:variables
     private void initTitre() {
         Titre[] titres = compteRef.getTitres();
@@ -192,19 +342,24 @@ public class UserFrame extends javax.swing.JInternalFrame {
             model[i][1] = titres[i].libelle ;
             model[i][2] = titres[i].cours ;
         }
-        jTable1.setModel(new TitresModel(model, new String[]{"id","libelle","cours"} ));
+        titreTable.setModel(new TitresModel(model, new String[]{"id","libelle","cours"} ));
     }
     
     private void majCash () {
-        cash.setText(String.valueOf(compteRef.cash()));
+        Double d = compteRef.cash() ;
+        int val = (int)(d * 100) ;
+        double res = val / 100 ;
+        cash.setText(String.valueOf(res));
     }
     
     private void majPortefeuille () {
-        portefeuille.setText(String.valueOf(compteRef.getMontantPortefeuille()));
+        Double d = compteRef.getMontantPortefeuille() ;
+        int val = (int)(d * 100) ;
+        double res = val / 100 ;
+        portefeuille.setText(String.valueOf(res));
     }
     
     private class TitresModel extends DefaultTableModel{
-        
         Class[] types = new Class [] {
             java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
         };
@@ -219,10 +374,13 @@ public class UserFrame extends javax.swing.JInternalFrame {
         public Class getColumnClass(int columnIndex) {
             return types [columnIndex];
         }
-
+        
+        public int getId  (int rowIndex) {
+            return (Integer)this.getValueAt(rowIndex, 0);
+        }
+            
         public boolean isCellEditable(int rowIndex, int columnIndex) {
             return canEdit [columnIndex];
         }
-        
     }
 }

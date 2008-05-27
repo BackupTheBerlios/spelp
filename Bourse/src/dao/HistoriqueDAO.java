@@ -17,7 +17,7 @@ public class HistoriqueDAO {
 	private HistoriqueDAO () {}
 
 	public int creerHistorique(Historique h) throws Exception {
-		long idHisto = BourseDAO.getInstance().generateId("TITRE","code");
+		long idHisto = BourseDAO.getInstance().generateId("HISTORIQUE","id");
 		String update = String.format(
 				"INSERT INTO HISTORIQUE (id, valeur, date_histo, id_titre) VALUES ( " +
 				"%s, %s, '%s', %s)",
