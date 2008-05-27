@@ -35,7 +35,7 @@ public class CompteServant extends _CompteImplBase {
 
 	public static int SUP = 0 ;
 	public static int INF = 1 ;
-	public static void checkAlarmes (int idTitre, double cours) {
+	public static void checkAlarmes (final int idTitre, final double cours) {
 		System.out.println("check alarme titre :"+idTitre+" cours : "+cours);
 		for (CustomClientAlarm c : clientsAlarme){
 			try {
@@ -45,7 +45,12 @@ public class CompteServant extends _CompteImplBase {
 						System.out.println("check alarme seuil : "+alarmeDuCompte.getSeuil());
 						if (alarmeDuCompte.getType() == SUP){
 							if (cours > alarmeDuCompte.getSeuil()){
-								c.getClient().notifie(idTitre,cours);
+								// notification asynchrone de l'alarme
+								final ClientAlarme tmp = c.getClient();
+								new Thread(new Runnable(){
+									public void run() {
+										tmp.notifie(idTitre,cours);
+									}}).start();
 							}
 						}
 						else {

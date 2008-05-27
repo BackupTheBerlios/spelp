@@ -73,10 +73,10 @@ public class AdminServant extends _AdminImplBase {
 				Utilisateur tmp = null ;
 				if (ctmp.getId_utilisateur() != 0){
 					 tmp = (Utilisateur) Util.getElement(u, ctmp.getId_utilisateur(), "id");
-					 result.add(new CompteAdmin(tmp.getNom(),String.valueOf(ctmp.getId())));
+					 result.add(new CompteAdmin(tmp.getNom(),String.valueOf(ctmp.getId()),ctmp.getCash()));
 				}
 				else {
-					result.add(new CompteAdmin("",String.valueOf(ctmp.getId())));
+					result.add(new CompteAdmin("",String.valueOf(ctmp.getId()),ctmp.getCash()));
 				}
 				
 			}

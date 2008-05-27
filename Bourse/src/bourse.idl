@@ -65,6 +65,7 @@ module BourseCorba
     {
     	string nom ;
     	string id ;
+    	double cash ;
     };
 	typedef sequence<CompteAdmin> ListeCompteAdmin;
 	
