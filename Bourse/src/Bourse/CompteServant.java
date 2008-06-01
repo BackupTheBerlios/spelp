@@ -19,6 +19,8 @@ import dao.Compte;
 import dao.CompteDAO;
 import dao.HistoriqueDAO;
 import dao.TitreDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CompteServant extends _CompteImplBase {
 	private long id ; 
@@ -35,6 +37,28 @@ public class CompteServant extends _CompteImplBase {
 
 	public static int SUP = 0 ;
 	public static int INF = 1 ;
+        
+        public Alarme[] getAlarmes() {
+            try {
+                Collection<dao.Alarme> alarmes = AlarmeDAO.getInstance().getAllAlarmesByIdCompte(id);
+                Alarme[] result = new Alarme[alarmes.size()];
+                LinkedList<Alarme> liste = new LinkedList<Alarme>();
+                for (dao.Alarme alarmeDuCompte : alarmes) {
+                    Alarme a = new Alarme();
+                    a.idTitre = alarmeDuCompte.getId_titre();
+                    a.seuil = alarmeDuCompte.getSeuil();
+                    a.type = (short) alarmeDuCompte.getType();
+                    liste.add(a) ;
+                }
+                result = liste.toArray(result);
+                return result ;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return new Alarme[0];
+        }
+        
+        
 	public static void checkAlarmes (final int idTitre, final double cours) {
 		System.out.println("check alarme titre :"+idTitre+" cours : "+cours);
 		for (CustomClientAlarm c : clientsAlarme){
@@ -216,11 +240,10 @@ public class CompteServant extends _CompteImplBase {
 		al.setType(a.type);
 		al.setId_titre(a.idTitre);
 		al.setId_compte((int) this.id);
-		
 		try {
-			AlarmeDAO.getInstance().creerAlarme(al);
+                    AlarmeDAO.getInstance().creerAlarme(al);
 		} catch (Exception e) {
-			e.printStackTrace();
+                    e.printStackTrace();
 		}
 	}
 
@@ -230,5 +253,9 @@ public class CompteServant extends _CompteImplBase {
 		custom.setIdCompte((int) this.id);
 		clientsAlarme.add(custom);
 	}
+
+    
+
+    
 
 }

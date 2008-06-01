@@ -43,7 +43,7 @@ module BourseCorba
 		double seuil ;
 		long idTitre ;
 	};
-	
+	typedef sequence<Alarme> ListeAlarmes;
 	
 	interface Compte
     {
@@ -56,8 +56,8 @@ module BourseCorba
     	long acheterAction(in long idTitre) raises (ServerException);
     	void vendreAction (in long idAction) raises (ServerException);
     	void positionnerAlarme (in Alarme a) ;
-		void enregistrerClientAlarme (in ClientAlarme ca) ;
-
+        void enregistrerClientAlarme (in ClientAlarme ca) ;
+        ListeAlarmes getAlarmes () ;
     	double cash () ;
     };
     

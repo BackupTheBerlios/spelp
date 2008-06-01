@@ -7,20 +7,33 @@
 package ihm.user;
 
 import BourseCorba.ActionMontant;
+import BourseCorba.Alarme;
+import BourseCorba.ClientAlarme;
 import BourseCorba.Compte;
 import BourseCorba.ServerException;
 import BourseCorba.Titre;
+import ihm.utils.Connexion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.omg.CORBA.Context;
+import org.omg.CORBA.ContextList;
+import org.omg.CORBA.DomainManager;
+import org.omg.CORBA.ExceptionList;
+import org.omg.CORBA.NVList;
+import org.omg.CORBA.NamedValue;
+import org.omg.CORBA.Policy;
+import org.omg.CORBA.Request;
+import org.omg.CORBA.SetOverrideType;
+
 
 /**
  *
  * @author  faure
  */
-public class UserFrame extends javax.swing.JInternalFrame {
+public class UserFrame extends javax.swing.JInternalFrame implements ClientAlarme {
     JFrame owner = null ;
     Compte compteRef = null ;
     /** Creates new form UserFrame */
@@ -52,6 +65,7 @@ public class UserFrame extends javax.swing.JInternalFrame {
         initActions();
         majCash();
         majPortefeuille();
+        majAlarmes () ;
     }
 
     /** This method is called from within the constructor to
@@ -74,11 +88,14 @@ public class UserFrame extends javax.swing.JInternalFrame {
         titreTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         actions = new javax.swing.JTable();
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        alarmestable = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
 
         setClosable(true);
@@ -143,6 +160,13 @@ public class UserFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton4.setText("nouvelle Alarme");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -151,9 +175,10 @@ public class UserFrame extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,8 +186,10 @@ public class UserFrame extends javax.swing.JInternalFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addContainerGap(187, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addContainerGap(162, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Bourse", jPanel2);
@@ -200,15 +227,24 @@ public class UserFrame extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Portefeuille", jPanel3);
 
+        alarmestable.setModel(new AlarmesModel(new Object[][]{}, new String[]{"titre","type","seuil"} ));
+        jScrollPane3.setViewportView(alarmestable);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 614, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(269, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Alarmes", jPanel4);
@@ -238,7 +274,7 @@ public class UserFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -314,13 +350,35 @@ private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GE
     }
 }//GEN-LAST:event_jToggleButton1ActionPerformed
 
+private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    if (titreTable.getSelectedRow() != -1){
+         TitresModel model = (TitresModel) titreTable.getModel();
+         final int id = model.getId(titreTable.getSelectedRow());
+         PopUpSetAlarm alarm = new PopUpSetAlarm(owner, true, compteRef, id);
+         if (alarm.showSetAlarm() == Connexion.status.OK){
+             Alarme a = new Alarme() ;
+             a.seuil = alarm.getSeuil();
+             a.idTitre = id ;
+             a.type = (short) alarm.getType();
+             compteRef.positionnerAlarme(a);
+             compteRef.enregistrerClientAlarme(this);
+             initAll();
+         }
+    }
+    else {
+       JOptionPane.showMessageDialog(owner,"Vous n'avez pas sélectionner de titre", "Warning", JOptionPane.WARNING_MESSAGE); 
+    }
+}//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable actions;
+    private javax.swing.JTable alarmestable;
     private javax.swing.JLabel cash;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -329,6 +387,7 @@ private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GE
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel portefeuille;
@@ -343,6 +402,27 @@ private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GE
             model[i][2] = titres[i].cours ;
         }
         titreTable.setModel(new TitresModel(model, new String[]{"id","libelle","cours"} ));
+    }
+
+    private void majAlarmes() {
+        Alarme[] alarmes = compteRef.getAlarmes();
+        Object[][] model = new Object[alarmes.length][3] ;
+        for (int i = 0 ; i < alarmes.length ; i ++){
+            try {
+                model[i][0] = compteRef.getTitre(alarmes[i].idTitre).libelle;
+                if (alarmes[i].type == 1){
+                    model[i][1] = "INF" ;    
+                }
+                else {
+                    model[i][1] = "SUP" ;    
+                }
+                
+                model[i][2] = alarmes[i].seuil ;
+                alarmestable.setModel(new AlarmesModel(model, new String[]{"titre","type","seuil"} ));
+            } catch (ServerException ex) {
+                Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     private void majCash () {
@@ -383,4 +463,55 @@ private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GE
             return canEdit [columnIndex];
         }
     }
+    
+    private class AlarmesModel extends DefaultTableModel{
+        Class[] types = new Class [] {
+             java.lang.String.class,java.lang.String.class, java.lang.Double.class
+        };
+        boolean[] canEdit = new boolean [] {
+            false, false, false
+        };
+
+        private AlarmesModel(Object[][] model, String[] string) {
+           super(model, string);
+        }
+
+        public Class getColumnClass(int columnIndex) {
+            return types [columnIndex];
+        }
+            
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return canEdit [columnIndex];
+        }
+    }
+
+    public void notifie(int idTitre, double nouveauCours) {
+       JOptionPane.showMessageDialog(owner, "YES");
+    }
+
+    public boolean _is_a(String repositoryIdentifier) {return true ;}
+
+    public boolean _is_equivalent(org.omg.CORBA.Object other) {return true ;}
+
+    public boolean _non_existent() {return true ;}
+
+    public int _hash(int maximum) {return 0 ;}
+
+    public org.omg.CORBA.Object _duplicate() {return null ;}
+
+    public void _release() {}
+
+    public org.omg.CORBA.Object _get_interface_def() {return null ;}
+
+    public Request _request(String operation) {return null ;}
+
+    public Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result) {return null ;}
+
+    public Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result, ExceptionList exclist, ContextList ctxlist) {return null ;}
+
+    public Policy _get_policy(int policy_type) {return null ;}
+
+    public DomainManager[] _get_domain_managers() {return null ;}
+
+    public org.omg.CORBA.Object _set_policy_override(Policy[] policies, SetOverrideType set_add) {return null ;}
 }
