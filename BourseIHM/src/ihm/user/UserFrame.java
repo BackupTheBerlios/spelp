@@ -8,34 +8,31 @@ package ihm.user;
 
 import BourseCorba.ActionMontant;
 import BourseCorba.Alarme;
-import BourseCorba.ClientAlarme;
 import BourseCorba.Compte;
 import BourseCorba.ServerException;
 import BourseCorba.Titre;
+import ihm.StartFrame;
 import ihm.utils.Connexion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.omg.CORBA.Context;
-import org.omg.CORBA.ContextList;
-import org.omg.CORBA.DomainManager;
-import org.omg.CORBA.ExceptionList;
-import org.omg.CORBA.NVList;
-import org.omg.CORBA.NamedValue;
-import org.omg.CORBA.Policy;
-import org.omg.CORBA.Request;
-import org.omg.CORBA.SetOverrideType;
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContextPackage.CannotProceed;
+import org.omg.CosNaming.NamingContextPackage.InvalidName;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 
 
 /**
  *
  * @author  faure
  */
-public class UserFrame extends javax.swing.JInternalFrame implements ClientAlarme {
+public class UserFrame extends javax.swing.JInternalFrame {
     JFrame owner = null ;
     Compte compteRef = null ;
+    private ClientAlarmeIHM clientAlarme ;
     /** Creates new form UserFrame */
     private UserFrame() {
         initComponents();
@@ -46,7 +43,28 @@ public class UserFrame extends javax.swing.JInternalFrame implements ClientAlarm
          owner = aThis ;
          this.compteRef = compteRef ;
          initAll () ;
+         enregistrerClientAlarme() ;
          
+    }
+
+    private void enregistrerClientAlarme() {
+        try {
+            this.clientAlarme = new ClientAlarmeIHM(owner);
+            StartFrame frame = (StartFrame) owner;
+            ORB orb = frame.getOrb();
+            orb.connect(clientAlarme);
+            // bind the Object Reference in Naming
+            NameComponent nc = new NameComponent("ClientAlarme", "");
+            NameComponent[] path2 = {nc};
+            frame.getNcRef().rebind(path2, clientAlarme);
+            compteRef.enregistrerClientAlarme(this.clientAlarme);
+        } catch (NotFound ex) {
+            Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CannotProceed ex) {
+            Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidName ex) {
+            Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void initActions() {
@@ -335,7 +353,7 @@ private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GE
                 public void run() {
                     for (int i = 0 ; i < actions.getSelectedRowCount() ; i++){
                         try {
-                            compteRef.vendreAction(actions.getSelectedRows()[i]);
+                            compteRef.vendreAction(model.getId(actions.getSelectedRows()[i]));
                         } catch (ServerException ex) {
                             Logger.getLogger(UserFrame.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -361,7 +379,7 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
              a.idTitre = id ;
              a.type = (short) alarm.getType();
              compteRef.positionnerAlarme(a);
-             compteRef.enregistrerClientAlarme(this);
+             
              initAll();
          }
     }
@@ -488,30 +506,4 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void notifie(int idTitre, double nouveauCours) {
        JOptionPane.showMessageDialog(owner, "YES");
     }
-
-    public boolean _is_a(String repositoryIdentifier) {return true ;}
-
-    public boolean _is_equivalent(org.omg.CORBA.Object other) {return true ;}
-
-    public boolean _non_existent() {return true ;}
-
-    public int _hash(int maximum) {return 0 ;}
-
-    public org.omg.CORBA.Object _duplicate() {return null ;}
-
-    public void _release() {}
-
-    public org.omg.CORBA.Object _get_interface_def() {return null ;}
-
-    public Request _request(String operation) {return null ;}
-
-    public Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result) {return null ;}
-
-    public Request _create_request(Context ctx, String operation, NVList arg_list, NamedValue result, ExceptionList exclist, ContextList ctxlist) {return null ;}
-
-    public Policy _get_policy(int policy_type) {return null ;}
-
-    public DomainManager[] _get_domain_managers() {return null ;}
-
-    public org.omg.CORBA.Object _set_policy_override(Policy[] policies, SetOverrideType set_add) {return null ;}
 }

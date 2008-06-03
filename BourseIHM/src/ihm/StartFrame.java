@@ -14,6 +14,7 @@ import BourseCorba.ServerException;
 import ihm.admin.AdminFrame;
 import ihm.user.UserFrame;
 import ihm.utils.Connexion;
+import ihm.ws.WSFrame;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -32,11 +33,20 @@ import org.omg.CosNaming.NamingContextPackage.NotFound;
 public class StartFrame extends javax.swing.JFrame {
     Bourse bourseRef = null ;
     NamingContext ncRef ;
+
+    public NamingContext getNcRef() {
+        return ncRef;
+    }
     NameComponent[] path = new NameComponent[1];
+    ORB orb ;
     /** Creates new form StartFrame */
     public StartFrame() {
         initComponents();
         initCorba() ;
+    }
+
+    public ORB getOrb() {
+        return orb;
     }
 
     /** This method is called from within the constructor to
@@ -74,6 +84,11 @@ public class StartFrame extends javax.swing.JFrame {
         });
 
         jButton3.setText("WebService");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         internal.setBackground(java.awt.Color.white);
         internal.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -124,7 +139,7 @@ public class StartFrame extends javax.swing.JFrame {
     private void initCorba() {
         try {
             String[] args = new String[0];
-            ORB orb = ORB.init(args, null);
+            orb = ORB.init(args, null);
             // get the root naming context
             org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
             ncRef = NamingContextHelper.narrow(objRef);
@@ -179,6 +194,12 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } 
     }
 }//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    WSFrame ws = new WSFrame(this);
+    ws.setVisible(true);
+    internal.add(ws);
+}//GEN-LAST:event_jButton3ActionPerformed
 
     /**
     * @param args the command line arguments

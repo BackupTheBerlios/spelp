@@ -108,23 +108,6 @@ public class AdminServant extends _AdminImplBase {
 		}
 		else {
 			throw new BourseCorba.ServerException("user inexistant");
-		}
-		
-		
+		}		
 	}
-
-	public int creerTitre(String libelle, double coursIntro)
-			throws ServerException {
-		Titre t = new Titre() ;
-		t.setLibelle(libelle) ;
-		t.setCoursIntro(coursIntro);
-		try {
-			t = TitreDAO.getInstance().creerTitre(t);
-		}  catch (Exception e) {
-			e.printStackTrace();
-			throw new ServerException(e.getMessage());
-		}
-		return t.getCode();
-	}
-
 }

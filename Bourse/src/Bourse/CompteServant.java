@@ -1,6 +1,7 @@
 package Bourse;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,6 +20,8 @@ import dao.Compte;
 import dao.CompteDAO;
 import dao.HistoriqueDAO;
 import dao.TitreDAO;
+
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -60,35 +63,78 @@ public class CompteServant extends _CompteImplBase {
         
         
 	public static void checkAlarmes (final int idTitre, final double cours) {
-		System.out.println("check alarme titre :"+idTitre+" cours : "+cours);
-		for (CustomClientAlarm c : clientsAlarme){
-			try {
-				Collection<dao.Alarme> alarmes = AlarmeDAO.getInstance().getAllAlarmesByIdCompte(c.getIdCompte());
-				for (dao.Alarme alarmeDuCompte : alarmes){
-					if (alarmeDuCompte.getId_titre() == idTitre){
-						System.out.println("check alarme seuil : "+alarmeDuCompte.getSeuil());
-						if (alarmeDuCompte.getType() == SUP){
-							if (cours > alarmeDuCompte.getSeuil()){
-								// notification asynchrone de l'alarme
-								final ClientAlarme tmp = c.getClient();
-								new Thread(new Runnable(){
-									public void run() {
-										tmp.notifie(idTitre,cours);
-									}}).start();
+		final List<CustomClientAlarm> toDestroy = new LinkedList<CustomClientAlarm>();
+		final Collection<Thread> collecTreads = new LinkedList<Thread>() ;
+		synchronized (clientsAlarme) {
+			// pour toutes les alarmes on va tester si une doit etre declenchee
+			for (final CustomClientAlarm c : clientsAlarme){
+				try {
+					Collection<dao.Alarme> alarmes = AlarmeDAO.getInstance().getAllAlarmesByIdCompte(c.getIdCompte());
+					for (dao.Alarme alarmeDuCompte : alarmes){
+						if (alarmeDuCompte.getId_titre() == idTitre){
+							if (alarmeDuCompte.getType() == SUP){
+								if (cours > alarmeDuCompte.getSeuil()){
+									// notification asynchrone de l'alarme
+									final ClientAlarme tmp = c.getClient();
+										Thread t = new Thread(new Runnable(){
+											public void run() {
+												try {
+													tmp.notifie(idTitre,cours);
+												}
+												// si la notification provoque une erreur 
+												// c'est du a un probleme de deconnexion
+												// donc on supprime la reference du client
+												catch (Exception e){
+													toDestroy.add(c);
+												}
+											}});
+										collecTreads.add(t);
+										t.start() ;
+								}
 							}
-						}
-						else {
-							if (cours < alarmeDuCompte.getSeuil()){
-								c.getClient().notifie(idTitre,cours);
+							else {
+								if (cours < alarmeDuCompte.getSeuil()){
+									try {
+										c.getClient().notifie(idTitre,cours);
+									}
+									// si la notification provoque une erreur 
+									// c'est du a un probleme de deconnexion
+									// donc on supprime la reference du client
+									catch (Exception e){
+										toDestroy.add(c);
+									}
+								}
 							}
 						}
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-			
 		}
+		// on va attendre que les alarmes soient traitées dans un thread 
+		// et le serveur pourra continuer sa tache
+		Thread clean = new Thread(new Runnable(){
+			public void run() {
+				for (Thread t : collecTreads){
+					try {
+						t.join();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					} 
+				}
+				// une fois tous les threads d'alarmes terminés 
+				// on supprime les clients de la liste d'alarme
+				for (int i = 0 ; i < toDestroy.size();i++){
+					synchronized(clientsAlarme){
+						CustomClientAlarm tmp = toDestroy.get(i);
+						clientsAlarme.remove(toDestroy.get(i));
+					}
+				}
+			}
+		});
+		clean.start();
+		
 	}
 	
 	public int acheterAction(int idTitre) throws ServerException{

@@ -121,7 +121,7 @@ public class CompteDAO {
 			rs = s.executeQuery(selectCompte);
 			if (!rs.next())
 			{
-				throw new Exception("Pas d'utilisateur");
+				throw new Exception("Compte inconnu");
 			}
 			result.setId(rs.getLong(1));
 			result.setCash(rs.getDouble(2));
