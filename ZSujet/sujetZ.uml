@@ -3,6 +3,148 @@
   <packageImport xmi:id="_EuvAwTE5Ed2mNIJ4ULH3Kg">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_OmizYDE5Ed2mNIJ4ULH3Kg" name="prestataire"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_RuElADE5Ed2mNIJ4ULH3Kg" name="BIPTEL">
+    <generalization xmi:id="_TI0rwDE5Ed2mNIJ4ULH3Kg" general="_OmizYDE5Ed2mNIJ4ULH3Kg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_Tqf1cDE5Ed2mNIJ4ULH3Kg" name="BIBOPTEL">
+    <generalization xmi:id="_WwFtYDE5Ed2mNIJ4ULH3Kg" general="_OmizYDE5Ed2mNIJ4ULH3Kg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_bRKr4DE5Ed2mNIJ4ULH3Kg" name="connecterRéseau"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_jKxFYDE5Ed2mNIJ4ULH3Kg" name="Association_prestataire_connecterRéseau" memberEnd="_jKxFYTE5Ed2mNIJ4ULH3Kg _jK62YjE5Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_jKxFYTE5Ed2mNIJ4ULH3Kg" name="connecterréseau" type="_bRKr4DE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_jKxFYDE5Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jK62YTE5Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jK62YDE5Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_jK62YjE5Ed2mNIJ4ULH3Kg" name="prestataire" type="_OmizYDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_jKxFYDE5Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jLEAUDE5Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jLEAUTE5Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_knTU0DE5Ed2mNIJ4ULH3Kg" name="déconnecterRéseau"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_mZlx0DE5Ed2mNIJ4ULH3Kg" name="Association_prestataire_déconnecterRéseau" memberEnd="_mZlx0TE5Ed2mNIJ4ULH3Kg _mZvi0jE5Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_mZlx0TE5Ed2mNIJ4ULH3Kg" name="déconnecterréseau" type="_knTU0DE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_mZlx0DE5Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mZvi0TE5Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mZvi0DE5Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_mZvi0jE5Ed2mNIJ4ULH3Kg" name="prestataire" type="_OmizYDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_mZlx0DE5Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mZvi0zE5Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mZvi1DE5Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_ueXgkDE5Ed2mNIJ4ULH3Kg" name="passerUnAppel"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_3jNlMDE5Ed2mNIJ4ULH3Kg" name="utilisateur"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_7iLVIDE5Ed2mNIJ4ULH3Kg" name="Association_utilisateur_numéroter" memberEnd="_7iUfEDE5Ed2mNIJ4ULH3Kg _7iUfEzE5Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_7iUfEDE5Ed2mNIJ4ULH3Kg" name="numéroter" type="_ueXgkDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_7iLVIDE5Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7iUfEjE5Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7iUfETE5Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_7iUfEzE5Ed2mNIJ4ULH3Kg" name="utilisateur" type="_3jNlMDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_7iLVIDE5Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7ieQEDE5Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7ieQETE5Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_hujwoDE6Ed2mNIJ4ULH3Kg" name="enregistrerNuméroListeNoire"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_yT0SsDE6Ed2mNIJ4ULH3Kg" name="enregistrerPosteRedirection"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_IQtAwDE7Ed2mNIJ4ULH3Kg" name="Association_utilisateur_enregistrerPosteRedirection" memberEnd="_IQtAwTE7Ed2mNIJ4ULH3Kg _IQ2KsjE7Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_IQtAwTE7Ed2mNIJ4ULH3Kg" name="enregistrerposteredirection" type="_yT0SsDE6Ed2mNIJ4ULH3Kg" isUnique="false" association="_IQtAwDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IQ2KsTE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IQ2KsDE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_IQ2KsjE7Ed2mNIJ4ULH3Kg" name="utilisateur" type="_3jNlMDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_IQtAwDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_IQ2KszE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_IQ2KtDE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_KDJOwDE7Ed2mNIJ4ULH3Kg" name="Association_utilisateur_enregistrerNuméroListeNoire" memberEnd="_KDJOwTE7Ed2mNIJ4ULH3Kg _KDSYsjE7Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_KDJOwTE7Ed2mNIJ4ULH3Kg" name="enregistrernumérolistenoire" type="_hujwoDE6Ed2mNIJ4ULH3Kg" isUnique="false" association="_KDJOwDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KDSYsTE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KDSYsDE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_KDSYsjE7Ed2mNIJ4ULH3Kg" name="utilisateur" type="_3jNlMDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_KDJOwDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KDSYszE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KDSYtDE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_mZ9TUDE7Ed2mNIJ4ULH3Kg" name="établirCommunication"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_pzXfIDE7Ed2mNIJ4ULH3Kg" name="Association_prestataire_établirCommunication" memberEnd="_pzXfITE7Ed2mNIJ4ULH3Kg _pzXfJDE7Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_pzXfITE7Ed2mNIJ4ULH3Kg" name="établircommunication" type="_mZ9TUDE7Ed2mNIJ4ULH3Kg" isUnique="false" association="_pzXfIDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pzXfIzE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pzXfIjE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_pzXfJDE7Ed2mNIJ4ULH3Kg" name="prestataire" type="_OmizYDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_pzXfIDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pzgpEDE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pzgpETE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_0C3ZADE7Ed2mNIJ4ULH3Kg" name="bloquerAppel"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_15oGUDE7Ed2mNIJ4ULH3Kg" name="Association_BIPTEL_bloquerAppel" memberEnd="_15oGUTE7Ed2mNIJ4ULH3Kg _15oGVDE7Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_15oGUTE7Ed2mNIJ4ULH3Kg" name="bloquerappel" type="_0C3ZADE7Ed2mNIJ4ULH3Kg" isUnique="false" association="_15oGUDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_15oGUzE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_15oGUjE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_15oGVDE7Ed2mNIJ4ULH3Kg" name="biptel" type="_RuElADE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_15oGUDE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_15x3UDE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_15x3UTE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_3fG2YDE7Ed2mNIJ4ULH3Kg" name="transférerAppel"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_5UrQ4DE7Ed2mNIJ4ULH3Kg" name="Association_BIBOPTEL_transférerAppel" memberEnd="_5UrQ4TE7Ed2mNIJ4ULH3Kg _5U0a0jE7Ed2mNIJ4ULH3Kg">
+    <ownedEnd xmi:id="_5UrQ4TE7Ed2mNIJ4ULH3Kg" name="transférerappel" type="_3fG2YDE7Ed2mNIJ4ULH3Kg" isUnique="false" association="_5UrQ4DE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5U0a0TE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5U0a0DE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_5U0a0jE7Ed2mNIJ4ULH3Kg" name="biboptel" type="_Tqf1cDE5Ed2mNIJ4ULH3Kg" isUnique="false" association="_5UrQ4DE7Ed2mNIJ4ULH3Kg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5U0a0zE7Ed2mNIJ4ULH3Kg" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5U0a1DE7Ed2mNIJ4ULH3Kg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="__uAxgDE7Ed2mNIJ4ULH3Kg" name="Sequence">
+    <packagedElement xmi:type="uml:Interaction" xmi:id="_gu_fIDE8Ed2mNIJ4ULH3Kg" name="passer un appel">
+      <lifeline xmi:id="_kuQKADE8Ed2mNIJ4ULH3Kg" name="Téléphone" coveredBy="__mcUcDE8Ed2mNIJ4ULH3Kg"/>
+      <lifeline xmi:id="_ztvBEDE8Ed2mNIJ4ULH3Kg" name="BCS" coveredBy="__mcUcTE8Ed2mNIJ4ULH3Kg _EH20sDE-Ed2mNIJ4ULH3Kg _bAL3UDE-Ed2mNIJ4ULH3Kg _lu1LUDE-Ed2mNIJ4ULH3Kg _U98oEDE-Ed2mNIJ4ULH3Kg"/>
+      <lifeline xmi:id="_45bp4DE8Ed2mNIJ4ULH3Kg" name="Téléphone" coveredBy="_lu1LUTE-Ed2mNIJ4ULH3Kg"/>
+      <lifeline xmi:id="_9ZEBcDE9Ed2mNIJ4ULH3Kg" name="Annuaire" coveredBy="_EH20sTE-Ed2mNIJ4ULH3Kg _bAL3UTE-Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="__mcUcDE8Ed2mNIJ4ULH3Kg" name="Send1" covered="_kuQKADE8Ed2mNIJ4ULH3Kg" message="__mleYDE8Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="__mcUcTE8Ed2mNIJ4ULH3Kg" name="Receive1" covered="_ztvBEDE8Ed2mNIJ4ULH3Kg" message="__mleYDE8Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_EH20sDE-Ed2mNIJ4ULH3Kg" name="Send2" covered="_ztvBEDE8Ed2mNIJ4ULH3Kg" message="_EH20sjE-Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_EH20sTE-Ed2mNIJ4ULH3Kg" name="Receive2" covered="_9ZEBcDE9Ed2mNIJ4ULH3Kg" message="_EH20sjE-Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:CombinedFragment" xmi:id="_U98oEDE-Ed2mNIJ4ULH3Kg" name="CombinedFragment1" covered="_ztvBEDE8Ed2mNIJ4ULH3Kg">
+        <operand xmi:id="_U98oETE-Ed2mNIJ4ULH3Kg" name="Operand1">
+          <guard xmi:id="_WUFUkDE-Ed2mNIJ4ULH3Kg" name="Constraint1">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_WUFUkTE-Ed2mNIJ4ULH3Kg" name="ValueSpecification">
+              <language>Java</language>
+              <body>ExpressionBody</body>
+            </specification>
+          </guard>
+        </operand>
+      </fragment>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_bAL3UDE-Ed2mNIJ4ULH3Kg" name="Send3" covered="_ztvBEDE8Ed2mNIJ4ULH3Kg" message="_bAL3UjE-Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_bAL3UTE-Ed2mNIJ4ULH3Kg" name="Receive3" covered="_9ZEBcDE9Ed2mNIJ4ULH3Kg" message="_bAL3UjE-Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_lu1LUDE-Ed2mNIJ4ULH3Kg" name="Send4" covered="_ztvBEDE8Ed2mNIJ4ULH3Kg" message="_lu1LUjE-Ed2mNIJ4ULH3Kg"/>
+      <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_lu1LUTE-Ed2mNIJ4ULH3Kg" name="Receive4" covered="_45bp4DE8Ed2mNIJ4ULH3Kg" message="_lu1LUjE-Ed2mNIJ4ULH3Kg"/>
+      <message xmi:id="__mleYDE8Ed2mNIJ4ULH3Kg" name="numeroter" receiveEvent="__mcUcTE8Ed2mNIJ4ULH3Kg" sendEvent="__mcUcDE8Ed2mNIJ4ULH3Kg">
+        <argument xmi:type="uml:OpaqueExpression" xmi:id="_JNj_sDE9Ed2mNIJ4ULH3Kg" name="Argument1">
+          <language>Java</language>
+          <body>0561616161</body>
+        </argument>
+      </message>
+      <message xmi:id="_EH20sjE-Ed2mNIJ4ULH3Kg" name="estValide" receiveEvent="_EH20sTE-Ed2mNIJ4ULH3Kg" sendEvent="_EH20sDE-Ed2mNIJ4ULH3Kg">
+        <argument xmi:type="uml:OpaqueExpression" xmi:id="_gbY7wDE-Ed2mNIJ4ULH3Kg" name="Argument1">
+          <language>Java</language>
+          <body>0561616161</body>
+        </argument>
+      </message>
+      <message xmi:id="_bAL3UjE-Ed2mNIJ4ULH3Kg" name="estEnAttente" receiveEvent="_bAL3UTE-Ed2mNIJ4ULH3Kg" sendEvent="_bAL3UDE-Ed2mNIJ4ULH3Kg">
+        <argument xmi:type="uml:OpaqueExpression" xmi:id="_juY9kDE-Ed2mNIJ4ULH3Kg" name="Argument1">
+          <language>Java</language>
+          <body>0561616161</body>
+        </argument>
+      </message>
+      <message xmi:id="_lu1LUjE-Ed2mNIJ4ULH3Kg" name="Message1" receiveEvent="_lu1LUTE-Ed2mNIJ4ULH3Kg" sendEvent="_lu1LUDE-Ed2mNIJ4ULH3Kg"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_RbPoQDE8Ed2mNIJ4ULH3Kg" name="Interaction1"/>
   <profileApplication xmi:id="_EuvAwjE5Ed2mNIJ4ULH3Kg">
     <eAnnotations xmi:id="_EuvAwzE5Ed2mNIJ4ULH3Kg" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Standard.profile.uml#_yzU58YinEdqtvbnfB2L_5w"/>
