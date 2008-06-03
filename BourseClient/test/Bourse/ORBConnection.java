@@ -57,7 +57,7 @@ public class ORBConnection {
 				idUtilisateur = adminRef.insererUtilisateur("FAURE", "TRISTAN",
 						"TRFAURE", "1234", 1);
 				idCompte = adminRef.creerCompte(100);
-				adminRef.affecterCompte(idUtilisateur, idCompte);
+				adminRef.affecterCompte(idCompte, idUtilisateur);
 				compteRef = bourseRef.connectUser("TRFAURE", "1234");
 				serviceWebRef = bourseRef.getServiceWeb();
 				idTitre = serviceWebRef.creerTitre("TITRETEST", 2.5);
