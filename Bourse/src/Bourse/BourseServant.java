@@ -40,14 +40,13 @@ public class BourseServant extends _BourseImplBase{
 				}
 				else {
 					throw new BourseCorba.ServerException("user sans compte");
-				}
-				
+				}				
 			}
 			else {
 				throw new BourseCorba.ServerException("user inconnu");
 			}
 		} catch (Exception e) {
-			throw new BourseCorba.ServerException("user inexistant");
+			throw new BourseCorba.ServerException(e.getMessage());
 		}
 		return a ;
 	}

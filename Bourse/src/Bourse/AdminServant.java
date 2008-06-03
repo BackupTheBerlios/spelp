@@ -107,7 +107,7 @@ public class AdminServant extends _AdminImplBase {
 			}
 		}
 		else {
-			throw new BourseCorba.ServerException("user inexistant");
+			throw new BourseCorba.ServerException("l'utilisateur existe deja");
 		}		
 	}
 }
