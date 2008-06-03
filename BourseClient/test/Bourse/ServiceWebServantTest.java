@@ -23,6 +23,7 @@ public class ServiceWebServantTest extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
+
 	}
 
 	public void testMajCoursAction() {
