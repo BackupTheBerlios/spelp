@@ -17,7 +17,7 @@ public class CompteServantTest extends TestCase {
 
 	private int idAction;
 
-	private ClientAlarmeServant clientAlarmeRef;		
+	private ClientAlarmeServant clientAlarmeRef;
 	
 	@Override
 	protected void setUp() throws Exception {

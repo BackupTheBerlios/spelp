@@ -94,15 +94,20 @@ public class CompteServant extends _CompteImplBase {
 							}
 							else {
 								if (cours < alarmeDuCompte.getSeuil()){
-									try {
-										c.getClient().notifie(idTitre,cours);
-									}
-									// si la notification provoque une erreur 
-									// c'est du a un probleme de deconnexion
-									// donc on supprime la reference du client
-									catch (Exception e){
-										toDestroy.add(c);
-									}
+									Thread t = new Thread(new Runnable(){
+										public void run() {
+											try {
+												c.getClient().notifie(idTitre,cours);
+											}
+											// si la notification provoque une erreur 
+											// c'est du a un probleme de deconnexion
+											// donc on supprime la reference du client
+											catch (Exception e){
+												toDestroy.add(c);
+											}
+										}});
+									collecTreads.add(t);
+									t.start() ;
 								}
 							}
 						}
