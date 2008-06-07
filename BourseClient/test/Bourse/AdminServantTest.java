@@ -2,8 +2,6 @@ package Bourse;
 
 import junit.framework.TestCase;
 import BourseCorba.Admin;
-import BourseCorba.Bourse;
-import BourseCorba.CompteAdmin;
 import BourseCorba.ServerException;
 
 public class AdminServantTest extends TestCase {
