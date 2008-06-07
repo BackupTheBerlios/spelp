@@ -142,7 +142,7 @@
           <ownedParameter xmi:id="_AmJBAA-KEd2sVbl7MGroRg" name="Parameter1" type="_zaZ_gA-JEd2sVbl7MGroRg" direction="return"/>
         </ownedOperation>
       </packagedElement>
-      <packagedElement xmi:type="uml:Class" xmi:id="_xat_sA-JEd2sVbl7MGroRg" name="Compte" clientDependency="_HBdMsw-MEd2sVbl7MGroRg _kNr2Uw-MEd2sVbl7MGroRg _27KXMw-OEd2sVbl7MGroRg _dRfY4A-PEd2sVbl7MGroRg">
+      <packagedElement xmi:type="uml:Class" xmi:id="_xat_sA-JEd2sVbl7MGroRg" name="Compte" clientDependency="_HBdMsw-MEd2sVbl7MGroRg _kNr2Uw-MEd2sVbl7MGroRg _27KXMw-OEd2sVbl7MGroRg _dRfY4A-PEd2sVbl7MGroRg _AGq9szSgEd2iEPWFcSYL2Q">
         <ownedOperation xmi:id="_B_knMA-MEd2sVbl7MGroRg" name="getTitres">
           <ownedParameter xmi:id="_Hxtk8A-MEd2sVbl7MGroRg" name="Parameter1" type="_EcLMgA-MEd2sVbl7MGroRg" isUnique="false" direction="return">
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MCoAgA-MEd2sVbl7MGroRg" value="*"/>
@@ -182,6 +182,12 @@
           <ownedParameter xmi:id="_hsVzkA-PEd2sVbl7MGroRg" name="Parameter1" type="_WvUFUA-PEd2sVbl7MGroRg" isUnique="false" direction="return">
             <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kZHi4A-PEd2sVbl7MGroRg" value="*"/>
           </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_4uiSgDSfEd2iEPWFcSYL2Q" name="enregistrerClientAlarme">
+          <ownedParameter xmi:id="_XdXXUDSgEd2iEPWFcSYL2Q" name="ca" type="_92VSwDSfEd2iEPWFcSYL2Q"/>
+        </ownedOperation>
+        <ownedOperation xmi:id="_Z_xCoDSgEd2iEPWFcSYL2Q" name="getAlarmes">
+          <ownedParameter xmi:id="_cFYrUDSgEd2iEPWFcSYL2Q" name="Parameter1" type="_0grRwA-OEd2sVbl7MGroRg" direction="return"/>
         </ownedOperation>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_zaZ_gA-JEd2sVbl7MGroRg" name="Admin" clientDependency="_PzPn4w-LEd2sVbl7MGroRg">
@@ -334,6 +340,9 @@
         <ownedAttribute xmi:id="_5Natsg-OEd2sVbl7MGroRg" name="seuil">
           <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_pbH9YDSgEd2iEPWFcSYL2Q" name="idTtire">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+        </ownedAttribute>
         <ownedOperation xmi:id="_6vdIMA-OEd2sVbl7MGroRg" name="notifie"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_27KXMw-OEd2sVbl7MGroRg" name="Dependency7" supplier="_0grRwA-OEd2sVbl7MGroRg" client="_xat_sA-JEd2sVbl7MGroRg"/>
@@ -349,6 +358,17 @@
         </ownedAttribute>
       </packagedElement>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_dRfY4A-PEd2sVbl7MGroRg" name="Dependency8" supplier="_WvUFUA-PEd2sVbl7MGroRg" client="_xat_sA-JEd2sVbl7MGroRg"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_92VSwDSfEd2iEPWFcSYL2Q" name="ClientAlarme">
+        <ownedOperation xmi:id="_CrlxgDSgEd2iEPWFcSYL2Q" name="notifie">
+          <ownedParameter xmi:id="_JN62EDSgEd2iEPWFcSYL2Q" name="idTtire">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
+          </ownedParameter>
+          <ownedParameter xmi:id="_SYbd0DSgEd2iEPWFcSYL2Q" name="nouveauCours">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_AGq9szSgEd2iEPWFcSYL2Q" name="Dependency9" supplier="_92VSwDSfEd2iEPWFcSYL2Q" client="_xat_sA-JEd2sVbl7MGroRg"/>
       <profileApplication xmi:id="_FI758A-OEd2sVbl7MGroRg">
         <eAnnotations xmi:id="_FI758Q-OEd2sVbl7MGroRg" source="http://www.eclipse.org/uml2/2.0.0/UML">
           <references xmi:type="ecore:EPackage" href="ProfilCorba.uml#_9W1PkQ-NEd2sVbl7MGroRg"/>
@@ -371,4 +391,6 @@
   <ProfilCorba:CORBA_ATTRIBUTE xmi:id="_5kABsA-OEd2sVbl7MGroRg" base_Property="_4ylL0A-OEd2sVbl7MGroRg"/>
   <ProfilCorba:CORBA_ATTRIBUTE xmi:id="_52lmgA-OEd2sVbl7MGroRg" base_Property="_5Natsg-OEd2sVbl7MGroRg"/>
   <ProfilCorba:CORBA_STRUCT xmi:id="_X8aKkA-PEd2sVbl7MGroRg" base_Class="_WvUFUA-PEd2sVbl7MGroRg"/>
+  <ProfilCorba:CORBA_INTERFACE xmi:id="_BsXwMDSgEd2iEPWFcSYL2Q" base_Class="_92VSwDSfEd2iEPWFcSYL2Q"/>
+  <ProfilCorba:CORBA_ATTRIBUTE xmi:id="_s7nooDSgEd2iEPWFcSYL2Q" base_Property="_pbH9YDSgEd2iEPWFcSYL2Q"/>
 </xmi:XMI>
